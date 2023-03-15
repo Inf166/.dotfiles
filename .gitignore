@@ -1,0 +1,12 @@
+.ssh/
+.landscape/
+
+.bash_history
+.bash_logout
+
+.gitconfig
+
+.motd_shown
+
+.sudo_as_admin_successful
+.viminfo

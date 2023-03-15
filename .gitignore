@@ -1,8 +1,11 @@
-.cache/
+/.autojump/
+/.cache/
 /.extensions/*
-/.extensions/.oh-my-zsh/
-.ssh/
-.landscape/
+/.gnupg/
+/.keychain/
+/.landscape/
+/.local/
+/.ssh/
 
 .bash_history
 .bash_logout

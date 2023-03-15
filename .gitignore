@@ -1,12 +1,19 @@
+.cache/
+/.extensions/*
+/.extensions/.oh-my-zsh/
 .ssh/
 .landscape/
 
 .bash_history
 .bash_logout
-
 .gitconfig
-
+.histfile
 .motd_shown
-
 .sudo_as_admin_successful
+.wget-hsts
+.zcompdump
+.zcompdump-NB-705-5.8
+.zcompdump-NB-705-5.8.zwc
+.zsh_history
 .viminfo
+

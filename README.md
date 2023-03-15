@@ -8,4 +8,7 @@
 
 # Unleash zsh
 
-- Run `sudo apt install zsh`
+- Run `sudo apt install zsh;`
+- Install curl in order to install oh-my-zsh `sudo apt install curl;`
+- Install oh-my-zsh and follow the instructions `sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)";`
+- Install Starship prompt `curl -fsSL https://starship.rs/install.sh | sh`

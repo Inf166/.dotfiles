@@ -16,7 +16,7 @@
 .wget-hsts
 .zcompdump
 .zcompdump-NB-705-5.8
-.zcompdump-NB-705-5.8.zwc
+.zcompdump-NB-705-5.8.*
 .zsh_history
 .viminfo
 

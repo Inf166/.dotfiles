@@ -34,3 +34,7 @@
 - Run `./install.py`
 - Run `pip install thefuck`
 - Run `sudo apt-get install keychain`
+
+## Pimp your Terminal
+
+- Install Nerd Fonts [Fira Mono](https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/FiraMono.zip)

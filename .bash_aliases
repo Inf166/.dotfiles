@@ -1,24 +1,57 @@
-### ALIASES ###
+### Functions for aliases ###
+nvmv() {
+	nvm --version | awk '{print "nvm version " $1}';
+}
 
-# Navigation
+npmv() {
+	npm --version | awk '{print "npm version " $1}';
+}
+
+phpstorm() {
+	'/mnt/c/Program Files/JetBrains/PhpStorm 2022.2/bin/phpstorm64.exe' .;
+	return;
+}
+
+# My aliases
+
+# bash
+alias econf='vim ~/.bashrc'
+alias sconf='source ~/.bashrc'
+
+# system
+alias sagi='sudo apt-get install'
+alias sagu='sudo apt-get update && sudo apt-get upgrade'
+alias sai='sudo apt install'
+alias sau='sudo apt update && sudo apt upgrade'
+
+# navigation
 alias ..='cd ..'
 alias ...='cd ../..'
 
-# List
+# list
 alias ls='ls --color=auto'
-alias ll='ls -l'
-alias la='ls -la'
+alias la='ls -a'
+alias ll='ls -alF'
+
+# System info
+alias stats='nvmv; npmv; git --version; ddev --version; docker --version; docker-compose --version;'
 
 # Date
 alias datum="date + %Y-%m-%d_%H-%M"
 
-# Dangerzone
+# dangerzone
 alias mv='mv -i'
 alias rm='rm -i'
 
-# Git
+# git
 alias gs='git status'
 alias gd='git diff'
+alias glog='git log --graph --pretty=oneline --abbrev-commit'
+alias gaa='git add .'
+alias push='git push origin'
+
+# Docker
+alias ds='docker ps'
 
 # DDev
 alias poweron="ddev start"
@@ -36,7 +69,9 @@ alias itool="ddev launch /typo3/install.php"
 
 # DDev TYPO3
 alias cache="ddev typo3cms cache:flush"
+alias fcache="ddev composer du; cache;"
 alias dbupdate="ddev typo3cms database:updateschema"
+alias fixfolder="ddev typo3cms install:fixfolderstructure"
 
 # DDev Node Js
 alias npmi="ddev . npm i"
@@ -48,5 +83,5 @@ alias compi="ddev composer install"
 alias compu="ddev composer update"
 
 # Development Aliases
-alias eclass="cd eclass-assets; npm run typo3; ..; ddev composer run assets:copy; cache;"
 alias boot="poweron; compi; dbupdate; be; npmi; build; fe;"
+alias ps="phpstorm"

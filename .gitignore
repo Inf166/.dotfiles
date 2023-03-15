@@ -1,5 +1,9 @@
+/.idea/
 /.autojump/
 /.cache/
+/.config/oh-my-zsh/custom/plugins/*
+/.config/starship/cache/*
+/.config/thefuck/__pycache__/*
 /.extensions/*
 /.gnupg/
 /.keychain/

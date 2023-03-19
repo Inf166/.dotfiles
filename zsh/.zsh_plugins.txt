@@ -1,0 +1,16 @@
+lukechilds/zsh-nvm
+
+robbyrussell/oh-my-zsh path:plugins/alias-finder
+robbyrussell/oh-my-zsh path:plugins/autojump
+robbyrussell/oh-my-zsh path:plugins/command-not-found
+robbyrussell/oh-my-zsh path:plugins/git
+robbyrussell/oh-my-zsh path:plugins/git-extras
+robbyrussell/oh-my-zsh path:plugins/keychain
+robbyrussell/oh-my-zsh path:plugins/node
+robbyrussell/oh-my-zsh path:plugins/npm
+robbyrussell/oh-my-zsh path:plugins/ssh-agent
+robbyrussell/oh-my-zsh path:plugins/web-search
+
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-completions
+zsh-users/zsh-syntax-highlighting

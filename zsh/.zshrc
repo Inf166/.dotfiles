@@ -1,0 +1,43 @@
+#  _______ _  _
+# |_  / __| || |
+#  / /\__ \ __ |
+# /___|___/_||_|
+
+# Export nvm completion settings for lukechilds/zsh-nvm plugin
+# Note: This must be exported before the plugin is bundled
+export NVM_DIR=${HOME}/.nvm
+export NVM_COMPLETION=true
+
+# Uncomment if comming from bash
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+# This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+# This loads nvm bash_completion
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+source ${HOME}/.zsh_plugins.sh
+
+source $HOME/.bash_aliases
+
+# Restart docker?
+wsl.exe -u root service docker status > /dev/null || wsl.exe -u root service docker start > /dev/null
+
+# Adjusts the agents that keychain manages:
+zstyle :omz:plugins:keychain agents ssh
+# Add sshkey on startup but wait for use
+# (remove --noask for instant prompt and ask only if id is needed)
+eval $(keychain -q --noask --eval id_ed25519)
+
+# DIRCOLORS (MacOS)
+export CLICOLOR=1
+
+# nix
+if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi
+
+# Define config path of starship
+export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
+export STARSHIP_CACHE=$HOME/.config/starship/cache
+
+# Init Starship
+eval $(starship init zsh)

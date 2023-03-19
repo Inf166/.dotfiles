@@ -116,4 +116,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# eval "$(starship init bash)"
+# nix
+if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi
+
+eval "$(starship init bash)"

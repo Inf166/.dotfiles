@@ -1,0 +1,17 @@
+### OSX ###
+*.DS_Store 
+
+# Dependency directories
+node_modules
+
+# Project build
+dist
+
+# ignore dotfiles bare repository
+.dotfiles
+
+# ignore ddev and typo3 files
+/.idea
+/*.sql
+/*.sql.gz
+/*.tar.gz

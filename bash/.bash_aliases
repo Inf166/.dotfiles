@@ -18,6 +18,12 @@ phpstorm() {
 alias edit='vim ~/.zshrc'
 alias src='source ~/.zshrc'
 
+# Bundle zsh plugins via antibody
+alias update-antibody='antibody bundle < $HOME/.zsh_plugins.txt > $HOME/.zsh_plugins.sh'
+
+# cat -> bat
+alias cat='bat'
+
 # system
 alias sagi='sudo apt-get install'
 alias sagu='sudo apt-get update && sudo apt-get upgrade'

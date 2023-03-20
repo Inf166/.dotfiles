@@ -26,6 +26,9 @@ warn() {
     echo "${color_red}$edge"
 }
 
+echo "force_color_prompt=yes" >> ~/.bashrc
+source ~/bashrc
+
 banner PORTABLE DEVELOPMENT ENVIROMENT INSTALLER
 echo ""
 warn During this script we download and install some packages with sudo

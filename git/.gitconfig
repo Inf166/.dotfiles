@@ -1,6 +1,3 @@
-[user]
-	name = Joël Maximilian Mai
-	email = joel@maispace.de
 [core]
 	excludesfile = ~/.gitignore_global
     editor = nvim
@@ -8,3 +5,4 @@
 	ff = only
 [init]
 	defaultBranch = main
+[user]

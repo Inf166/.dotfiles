@@ -59,6 +59,10 @@ echo ""
 echo What is you email address?
 read email
 
+echo ""
+echo What is your name for the git log?
+read name
+
 cd ~/.ssh
 
 echo ""
@@ -79,8 +83,14 @@ ssh-add ~/.ssh/${sshkeyname}
 cd ~/.dotfiles
 
 echo ""
-banner Printing public ssh key so you can add it to Bitbucket/GitHub ...
-bat ~/.ssh/${sshkeyname}.pub
+banner Writing gitconfig
+
+cd git/
+
+echo "	name = ${name}" >> .gitconfig
+echo "	email = ${email}" >> .gitconfig
+
+cd ~/.dotfiles
 
 echo ""
 banner Backing up local files from WSL .bashrc, .profile ...
@@ -149,6 +159,10 @@ sudo chsh -s $(which zsh) $USER
 echo ""
 banner Bundling zsh plugins ... 
 antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
+
+echo ""
+banner Printing public ssh key so you can add it to Bitbucket/GitHub ...
+bat ~/.ssh/${sshkeyname}.pub
 
 echo ""
 banner Press any key if you are done.

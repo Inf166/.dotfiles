@@ -1,10 +1,12 @@
 #!/bin/bash
 color_red='\033[0;31m'
 color_green='\033[0;32m'
+color_blue='\033[0;34m'
+color_orange='\033[0;33m'
 no_color='\033[0m'
 
 oops() {
-    echo -e "${color_red}$0" >&2
+    echo -e "${color_red}$0${no_color}" >&2
     exit 1
 }
 
@@ -14,7 +16,7 @@ banner() {
     msg="${color_green}# ${no_color}$* ${color_green}#"
     echo -e "${color_green}$edge"
     echo -e "$msg"
-    echo -e "${color_green}$edge"
+    echo -e "${color_green}$edge${no_color}"
 }
 
 warn() {
@@ -23,7 +25,7 @@ warn() {
     msg="${color_red}# ${no_color}$* ${color_red}#"
     echo -e "${color_red}$edge"
     echo -e "$msg"
-    echo -e "${color_red}$edge"
+    echo -e "${color_red}$edge${no_color}"
 }
 
 echo "force_color_prompt=yes" >> ~/.bashrc
@@ -34,7 +36,7 @@ echo ""
 warn During this script we download and install some packages with sudo
 echo ""
 
-echo "Do you want to continue? (y/n)"
+echo -e "${color_blue}Do you want to continue? (y/n)"
 read confirmation
 if $confirmation == "n"; then
     oops "No worries, you can do this later."
@@ -42,45 +44,44 @@ else
 
 echo ""
 banner Updating local system ...
-echo "> sudo apt update && apt upgrade -y"
-# Update and Upgrade local packages (assume yes)
+echo -e "${color_orange}> sudo apt update && apt upgrade -y${no_color}"
 sudo apt update && apt upgrade -y
-echo "> sudo apt-get update && apt-get upgrade -y"
+echo -e "${color_orange}> sudo apt-get update && apt-get upgrade -y${no_color}"
 sudo apt-get update && apt-get upgrade -y
 
 echo ""
 banner Creating new ssh key for you ...
 echo Making ssh key dir
-echo "> mkdir ~/.ssh"
+echo -e "${color_orange}> mkdir ~/.ssh${no_color}"
 mkdir ~/.ssh
 
 echo ""
-echo What should the ssh key be named?
+echo -e "${color_blue}What should the ssh key be named?${no_color}"
 read sshkeyname
 
 echo ""
-echo What is you email address?
+echo -e "${color_blue}What is you email address?${no_color}"
 read email
 
 echo ""
-echo What is your name for the git log?
+echo -e "${color_blue}What is your name for the git log?${no_color}"
 read name
 
 cd ~/.ssh
 
 echo ""
 banner Generating your ssh key ...
-echo "> ssh-keygen -t ed25519 -b 4096 -C "${email}" -f "${sshkeyname}""
+echo -e "${color_orange}> ssh-keygen -t ed25519 -b 4096 -C "${email}" -f "${sshkeyname}"${no_color}"
 ssh-keygen -t ed25519 -b 4096 -C "${email}" -f "${sshkeyname}"
 
 echo ""
 banner Starting ssh agent ...
-echo "> eval "$(ssh-agent -s)""
+echo -e "${color_orange}> eval "$(ssh-agent -s)"${no_color}"
 eval "$(ssh-agent -s)"
 
 echo ""
 banner Adding new ssh key ...
-echo "> ssh-add ~/.ssh/${sshkeyname}"
+echo -e "${color_orange}> ssh-add ~/.ssh/${sshkeyname}${no_color}"
 ssh-add ~/.ssh/${sshkeyname}
 
 cd ~/.dotfiles
@@ -100,15 +101,15 @@ banner Backing up local files from WSL .bashrc, .profile ...
 echo Move files to ~/.backups
 
 echo ""
-echo "> mkdir ~/.backups"
+echo -e "${color_orange}> mkdir ~/.backups${no_color}"
 mkdir ~/.backups
 
 echo ""
-echo "> mv ~/.bashrc ~/.backups/.bashrc"
+echo -e "${color_orange}> mv ~/.bashrc ~/.backups/.bashrc${no_color}"
 mv ~/.bashrc ~/.backups/.bashrc
 
 echo ""
-echo "> mv ~/.profile ~/.backups/.profile"
+echo -e "${color_orange}> mv ~/.profile ~/.backups/.profile${no_color}"
 mv ~/.profile ~/.backups/.profile
 
 echo ""

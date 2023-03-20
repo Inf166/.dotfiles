@@ -4,6 +4,14 @@ oops() {
     exit 1
 }
 
+banner() {
+    msg="# $* #"
+    edge=$(echo "$msg" | sed 's/./#/g')
+    echo "$edge"
+    echo "$msg"
+    echo "$edge"
+}
+
 echo ------------------------------------------------------------------
 echo WELCOME TO THE PORTABLE DEVELOPMENT ENVIROMENT INSTALL SCRIPT
 echo \n

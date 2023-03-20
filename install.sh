@@ -21,9 +21,9 @@ warn() {
     msg="# $* #"
     edge=$(echo "$msg" | sed 's/./#/g')
     msg="${color_red}# ${no_color}$* ${color_red}#"
-    echo "${color_red}$edge"
-    echo "$msg"
-    echo "${color_red}$edge"
+    echo -e "${color_red}$edge"
+    echo -e "$msg"
+    echo -e "${color_red}$edge"
 }
 
 echo "force_color_prompt=yes" >> ~/.bashrc

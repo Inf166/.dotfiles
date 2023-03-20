@@ -39,6 +39,7 @@ alias ls='ls --color=auto'
 alias la='ls -a'
 alias ll='ls -alF'
 alias stats='nvmv; npmv; git --version; ddev --version; docker --version; docker-compose --version;'
+alias ddevstats="ddev . npm --version | awk '{print "npm version " $1}'; ddev . node --version | awk '{print "node version " $1}';  ddev . php -v | grep PHP | awk '{print "php version " $2}'| head -1; ddev . composer --version | grep version | awk '{print "composer version " $3}'"
 
 # Date
 alias datum="date + %Y-%m-%d_%H-%M"
@@ -54,9 +55,6 @@ alias glog='git log --graph --pretty=oneline --abbrev-commit'
 alias gaa='git add .'
 alias push='git push origin'
 
-# Bachelor
-alias thesis='jc thesis; code .; explorer.exe .;'
-
 # Docker
 alias ds='docker ps'
 
@@ -67,6 +65,7 @@ alias fuckthis="ddev stop"
 alias snapshot="ddev snapshot working_before_"
 
 # DDev launch windows
+alias describe="ddev describe"
 alias launch="ddev launch"
 alias mail="ddev launch -m"
 alias db="ddev launch -p"
@@ -75,8 +74,12 @@ alias be="ddev launch /typo3"
 alias itool="ddev launch /typo3/install.php"
 
 # DDev TYPO3
-alias cache="ddev typo3cms cache:flush"
-alias dbupdate="ddev typo3cms database:updateschema"
+alias cache="ddev typo3cms cache:flush;"
+alias ccache="ddev composer du;"
+alias fullcache="cache; ccache;"
+alias dbupdate="ddev typo3cms database:updateschema;"
+alias fixfolder="ddev typo3cms install:fixfolderstructure;"
+alias cadmin="ddev typo3cms backend:createadmin"
 
 # DDev Node Js
 alias npmi="ddev . npm i"
@@ -88,5 +91,5 @@ alias compi="ddev composer install"
 alias compu="ddev composer update"
 
 # Development Aliases
-alias boot="poweron; compi; dbupdate; be; npmi; build; fe;"
+alias boot="poweron; compu; dbupdate; be; npmi; build; fe;"
 alias ps="phpstorm"

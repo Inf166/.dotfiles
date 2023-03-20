@@ -27,7 +27,7 @@ warn() {
 }
 
 echo "force_color_prompt=yes" >> ~/.bashrc
-source ~/bashrc
+source ~/.bashrc
 
 banner PORTABLE DEVELOPMENT ENVIROMENT INSTALLER
 echo ""

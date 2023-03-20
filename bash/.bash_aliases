@@ -7,11 +7,6 @@ npmv() {
 	npm --version | awk '{print "npm version " $1}';
 }
 
-phpstorm() {
-	'/mnt/c/Program Files/JetBrains/PhpStorm 2022.2/bin/phpstorm64.exe' .;
-	return;
-}
-
 # My aliases
 
 # zsh
@@ -41,9 +36,6 @@ alias ll='ls -alF'
 alias stats='nvmv; npmv; git --version; ddev --version; docker --version; docker-compose --version;'
 alias ddevstats="ddev . npm --version | awk '{print "npm version " $1}'; ddev . node --version | awk '{print "node version " $1}';  ddev . php -v | grep PHP | awk '{print "php version " $2}'| head -1; ddev . composer --version | grep version | awk '{print "composer version " $3}'"
 
-# Date
-alias datum="date + %Y-%m-%d_%H-%M"
-
 # dangerzone
 alias mv='mv -i'
 alias rm='rm -i'
@@ -59,10 +51,10 @@ alias push='git push origin'
 alias ds='docker ps'
 
 # DDev
-alias poweron="ddev start"
+alias dstart="ddev start"
+alias dstop="ddev stop"
 alias poweroff="ddev poweroff"
-alias fuckthis="ddev stop"
-alias snapshot="ddev snapshot working_before_"
+alias snapshot="ddev snapshot --name $(date +%Y-%m-%d_%H-%M)-${PWD##*/}"
 
 # DDev launch windows
 alias describe="ddev describe"
@@ -92,4 +84,4 @@ alias compu="ddev composer update"
 
 # Development Aliases
 alias boot="poweron; compu; dbupdate; be; npmi; build; fe;"
-alias ps="phpstorm"
+alias pstorm="/mnt/c/Program\ Files/JetBrains/PhpStorm\ 2022.2/bin/phpstorm64.exe ."

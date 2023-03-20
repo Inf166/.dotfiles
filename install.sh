@@ -1,130 +1,159 @@
 #!/bin/bash
-oops() {
-    echo "$0:" "$@" >&2
-    exit 1
-}
-
 color_red='\033[0;31m'
 color_green='\033[0;32m'
 no_color='\033[0m'
+
+oops() {
+    echo "${color_red}$0" >&2
+    exit 1
+}
+
 banner() {
-    msg="${color_green}# ${no_color}$* ${color_green}#"
+    msg="# $* #"
     edge=$(echo "$msg" | sed 's/./#/g')
+    msg="${color_green}# ${no_color}$* ${color_green}#"
     echo "${color_green}$edge"
     echo "$msg"
     echo "${color_green}$edge"
 }
 
-echo ------------------------------------------------------------------
-echo WELCOME TO THE PORTABLE DEVELOPMENT ENVIROMENT INSTALL SCRIPT
+warn() {
+    msg="# $* #"
+    edge=$(echo "$msg" | sed 's/./#/g')
+    msg="${color_red}# ${no_color}$* ${color_red}#"
+    echo "${color_red}$edge"
+    echo "$msg"
+    echo "${color_red}$edge"
+}
+
+banner PORTABLE DEVELOPMENT ENVIROMENT INSTALLER
 echo ""
-echo During this script we download and install some packages with sudo
+warn During this script we download and install some packages with sudo
 echo ""
-echo ------------------------------------------------------------------
 
 echo "Do you want to continue? (y/n)"
 read confirmation
 if $confirmation == "n"; then
     oops "No worries, you can do this later."
 else
-echo ------------------------------------------------------------------
-echo First, we need to update your system.
-echo "sudo apt update && apt upgrade -y"
+
+echo ""
+banner Updating local system ...
+echo "> sudo apt update && apt upgrade -y"
 # Update and Upgrade local packages (assume yes)
 sudo apt update && apt upgrade -y
-echo "sudo apt-get update && apt-get upgrade -y"
+echo "> sudo apt-get update && apt-get upgrade -y"
 sudo apt-get update && apt-get upgrade -y
 
-echo ------------------------------------------------------------------
-echo Creating new ssh key for you
-echo ------------------------------------------------------------------
+echo ""
+banner Creating new ssh key for you ...
 echo Making ssh key dir
+echo "> mkdir ~/.ssh"
 mkdir ~/.ssh
+
+echo ""
 echo What should the ssh key be named?
 read sshkeyname
+
+echo ""
 echo What is you email address?
 read email
 
 cd ~/.ssh
+
+echo ""
+banner Generating your ssh key ...
+echo "> ssh-keygen -t ed25519 -b 4096 -C "${email}" -f "${sshkeyname}""
 ssh-keygen -t ed25519 -b 4096 -C "${email}" -f "${sshkeyname}"
 
-echo Starting ssh agent
+echo ""
+banner Starting ssh agent ...
+echo "> eval "$(ssh-agent -s)""
 eval "$(ssh-agent -s)"
 
-echo Adding new ssh key
+echo ""
+banner Adding new ssh key ...
+echo "> ssh-add ~/.ssh/${sshkeyname}"
 ssh-add ~/.ssh/${sshkeyname}
+
 cd ~/.dotfiles
 
-echo ------------------------------------------------------------------
-echo Backup local files from WSL .bashrc, .profile
+echo ""
+banner Printing public ssh key so you can add it to Bitbucket/GitHub ...
+bat ~/.ssh/${sshkeyname}.pub
+
+echo ""
+banner Backing up local files from WSL .bashrc, .profile ...
 echo Move files to ~/.backups
+
+echo ""
+echo "> mkdir ~/.backups"
 mkdir ~/.backups
+
+echo ""
+echo "> mv ~/.bashrc ~/.backups/.bashrc"
 mv ~/.bashrc ~/.backups/.bashrc
+
+echo ""
+echo "> mv ~/.profile ~/.backups/.profile"
 mv ~/.profile ~/.backups/.profile
 
-echo ------------------------------------------------------------------
-echo Install curl
+echo ""
+banner Installing curl ...
 sudo apt install curl -y
 
-echo ------------------------------------------------------------------
-echo Install nix-package-manager
+echo ""
+banner Installing nix-package-manager ...
 curl -L https://nixos.org/nix/install | sh
 
-echo ------------------------------------------------------------------
-echo Source nix
+echo ""
+banner Sourcing nix ...
 . ~/.nix-profile/etc/profile.d/nix.sh
 
-echo ------------------------------------------------------------------
-echo Install nix packages
+echo ""
+banner Installing nix packages ...
+
 nix-env -iA \
 	nixpkgs.antibody \
 	nixpkgs.autojump \
 	nixpkgs.bat \
 	nixpkgs.direnv \
-	nixpkgs.docker \
-	nixpkgs.gcc \
 	nixpkgs.git \
 	nixpkgs.keychain \
 	nixpkgs.starship \
 	nixpkgs.stow \
 	nixpkgs.zsh
 
-echo ------------------------------------------------------------------
-echo Install Homebrew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+echo ""
+banner Installing ddev ...
 
-echo ------------------------------------------------------------------
-echo Install ddev
-curl -fsSL https://ddev.com/install.sh | bash
+curl -fsSL https://apt.fury.io/drud/gpg.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/ddev.gpg > /dev/null
+echo "deb [signed-by=/etc/apt/trusted.gpg.d/ddev.gpg] https://apt.fury.io/drud/ * *" | sudo tee /etc/apt/sources.list.d/ddev.list
+sudo apt update && sudo apt install -y ddev
 
-echo ------------------------------------------------------------------
-echo Stow dotfiles
+echo ""
+banner Stowing dotfiles ...
 stow bash
 stow git
 stow starship
 stow zsh
 
-echo ------------------------------------------------------------------
-echo Add zsh as a login shell
+echo ""
+banner Adding zsh as a login shell ...
 command -v zsh | sudo tee -a /etc/shells
 
-echo ------------------------------------------------------------------
-echo Use zsh as default shell
+echo ""
+banner Using zsh as default shell ...
 sudo chsh -s $(which zsh) $USER
 
-echo ------------------------------------------------------------------
-echo Bundle zsh plugins 
+echo ""
+banner Bundling zsh plugins ... 
 antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
 
-echo ------------------------------------------------------------------
-echo Printing public ssh key so you can add it to Bitbucket/GitHub
-bat ~/.ssh/${sshkeyname}.pub
-
 echo ""
-echo Press any key if you are done.
+banner Press any key if you are done.
 read anykey
 
-echo ------------------------------------------------------------------
-echo ALL DONE. You can close this tab now and open a new session.
-echo ------------------------------------------------------------------
+echo ""
+banner ALL DONE. You can close this tab now and open a new session.
 fi

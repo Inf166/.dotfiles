@@ -4,12 +4,15 @@ oops() {
     exit 1
 }
 
+color_red='\033[0;31m'
+color_green='\033[0;32m'
+no_color='\033[0m'
 banner() {
-    msg="# $* #"
+    msg="${color_green}# ${no_color}$* ${color_green}#"
     edge=$(echo "$msg" | sed 's/./#/g')
-    echo "$edge"
+    echo "${color_green}$edge"
     echo "$msg"
-    echo "$edge"
+    echo "${color_green}$edge"
 }
 
 echo ------------------------------------------------------------------

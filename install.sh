@@ -34,17 +34,23 @@ sudo apt-get update && apt-get upgrade -y
 
 echo ------------------------------------------------------------------
 echo Creating new ssh key for you
+echo ------------------------------------------------------------------
+echo Making ssh key dir
+mkdir ~/.ssh
 echo What should the ssh key be named?
 read sshkeyname
 echo What is you email address?
 read email
-ssh-keygen -t ${sshkeyname} -C "${email}"
+
+cd ~/.ssh
+ssh-keygen -t ed25519 -b 4096 -C "${email}" -f "${sshkeyname}"
 
 echo Starting ssh agent
 eval "$(ssh-agent -s)"
 
 echo Adding new ssh key
 ssh-add ~/.ssh/${sshkeyname}
+cd ~/.dotfiles
 
 echo ------------------------------------------------------------------
 echo Backup local files from WSL .bashrc, .profile
@@ -109,10 +115,9 @@ antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
 
 echo ------------------------------------------------------------------
 echo Printing public ssh key so you can add it to Bitbucket/GitHub
-bat ~/.ssh/${sshkeyname}_pub
+bat ~/.ssh/${sshkeyname}.pub
 
-echo \n
-echo \n
+echo ""
 echo Press any key if you are done.
 read anykey
 

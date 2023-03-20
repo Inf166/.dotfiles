@@ -14,9 +14,9 @@ banner() {
 
 echo ------------------------------------------------------------------
 echo WELCOME TO THE PORTABLE DEVELOPMENT ENVIROMENT INSTALL SCRIPT
-echo \n
+echo ""
 echo During this script we download and install some packages with sudo
-echo \n
+echo ""
 echo ------------------------------------------------------------------
 
 echo "Do you want to continue? (y/n)"
@@ -47,16 +47,15 @@ echo Adding new ssh key
 ssh-add ~/.ssh/${sshkeyname}
 
 echo ------------------------------------------------------------------
-echo Backup local files from WSL .bashrc, .bash_aliases, .profile
+echo Backup local files from WSL .bashrc, .profile
 echo Move files to ~/.backups
 mkdir ~/.backups
 mv ~/.bashrc ~/.backups/.bashrc
-mv ~/.bash_aliases ~/.backups/.bash_aliases
 mv ~/.profile ~/.backups/.profile
 
 echo ------------------------------------------------------------------
 echo Install curl
-sudo apt install curl
+sudo apt install curl -y
 
 echo ------------------------------------------------------------------
 echo Install nix-package-manager

@@ -1,12 +1,3 @@
-### Functions for aliases ###
-nvmv() {
-	nvm --version | awk '{print "nvm version " $1}';
-}
-
-npmv() {
-	npm --version | awk '{print "npm version " $1}';
-}
-
 # My aliases
 
 # zsh
@@ -33,8 +24,24 @@ alias ...='cd ../..'
 alias ls='ls --color=auto'
 alias la='ls -a'
 alias ll='ls -alF'
-alias stats='nvmv; npmv; git --version; ddev --version; docker --version; docker-compose --version;'
-alias ddevstats="ddev . npm --version | awk '{print "npm version " $1}'; ddev . node --version | awk '{print "node version " $1}';  ddev . php -v | grep PHP | awk '{print "php version " $2}'| head -1; ddev . composer --version | grep version | awk '{print "composer version " $3}'"
+
+# list stats
+alias nvmversion='echo "$(nvm --version | awk "{print 'nvm version ' \$1}")"'
+alias npmversion='echo "$(npm --version | awk "{print 'npm version ' \$1}")"'
+alias nodeversion='echo "$(node --version | awk "{print 'node version ' \$1}")"'
+alias gitversion='echo "$(git --version)"'
+alias ddevversion='echo "$(ddev --version)"'
+alias dockerversion='echo "$(docker --version)"'
+alias dockercomposeversion='echo "$(docker-compose --version)"'
+
+alias stats='gitversion; nvmversion; nodeversion; npmversion; dockerversion; dockercomposeversion; ddevversion;'
+
+alias dnpmversion='echo "$(ddev . npm --version | awk '{print "npm version " \$1}')"'
+alias dnodeversion='echo "$(ddev . node --version | awk '{print "node version " \$1}')"'
+alias dphpversion='echo "$(ddev . php -v | grep PHP | awk '{print "php version " \$2}'| head -1)"'
+alias dcomposerversion='echo "$(ddev . composer --version | grep version | awk '{print "composer version " \$3}')"'
+
+alias ddevstats="dnpmversion; dnodeversion; dphpversion; dcomposerversion;"
 
 # dangerzone
 alias mv='mv -i'

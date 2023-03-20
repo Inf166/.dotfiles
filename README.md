@@ -1,7 +1,7 @@
 # .dotfiles
 
 1. Clone this repository
-2. Run `chmod +x install.sh`
+2. Run `chmod a+x install.sh`
 3. Run `install.sh`
 4. Open up new window to initiate `zsh` shell
 

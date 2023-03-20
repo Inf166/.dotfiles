@@ -28,3 +28,4 @@ fi
 
 ## Homebrew
 eval "$(/bin/brew shellenv)"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

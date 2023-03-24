@@ -78,11 +78,12 @@ alias cache="ddev typo3cms cache:flush;"
 alias ccache="ddev composer du;"
 alias fullcache="cache; ccache;"
 alias dbupdate="ddev typo3cms database:updateschema;"
+alias langupdate="ddev typo3cms language:update"
 alias fixfolder="ddev typo3cms install:fixfolderstructure;"
 alias cadmin="ddev typo3cms backend:createadmin"
 
 # DDev Node Js
-alias npmi="ddev . npm i"
+alias npmi="ddev . npm i --no-audit --no-fund"
 alias build="ddev . npm run typo3; cache;"
 alias dev="ddev . npm run typo3:dev"
 

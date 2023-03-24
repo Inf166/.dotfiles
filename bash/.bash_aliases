@@ -26,9 +26,10 @@ alias la='ls -a'
 alias ll='ls -alF'
 
 # list stats
-alias nvmversion='echo "$(nvm --version | awk "{print 'nvm version ' \$1}")"'
-alias npmversion='echo "$(npm --version | awk "{print 'npm version ' \$1}")"'
-alias nodeversion='echo "$(node --version | awk "{print 'node version ' \$1}")"'
+
+alias nvmversion='echo "$(nvm --version | awk '\''{gsub(/^v/,""); print "nvm version " $1}'\'')"'
+alias npmversion='echo "$(npm --version | awk '\''{gsub(/^v/,""); print "npm version " $1}'\'')"'
+alias nodeversion='echo "$(node --version | awk '\''{gsub(/^v/,""); print "node version " $1}'\'')"'
 alias gitversion='echo "$(git --version)"'
 alias ddevversion='echo "$(ddev --version)"'
 alias dockerversion='echo "$(docker --version)"'
@@ -36,10 +37,10 @@ alias dockercomposeversion='echo "$(docker-compose --version)"'
 
 alias stats='gitversion; nvmversion; nodeversion; npmversion; dockerversion; dockercomposeversion; ddevversion;'
 
-alias dnpmversion='echo "$(ddev . npm --version | awk '{print "npm version " \$1}')"'
-alias dnodeversion='echo "$(ddev . node --version | awk '{print "node version " \$1}')"'
-alias dphpversion='echo "$(ddev . php -v | grep PHP | awk '{print "php version " \$2}'| head -1)"'
-alias dcomposerversion='echo "$(ddev . composer --version | grep version | awk '{print "composer version " \$3}')"'
+alias dnpmversion='echo "$(ddev . npm --version | awk '\''{gsub(/^v/,""); print "npm version " $1}'\'')"'
+alias dnodeversion='echo "$(ddev . node --version | awk '\''{gsub(/^v/,""); print "node version " $1}'\'')"'
+alias dphpversion='echo "$(ddev . php --version | head -n 1 | awk '\''{print "php version " $2}'\'')"'
+alias dcomposerversion='echo "$(ddev . composer --version | grep version | awk '\''{print "composer version " \$3}'\'')"'
 
 alias ddevstats="dnpmversion; dnodeversion; dphpversion; dcomposerversion;"
 
@@ -92,3 +93,4 @@ alias compu="ddev composer update"
 # Development Aliases
 alias boot="poweron; compu; dbupdate; be; npmi; build; fe;"
 alias pstorm="/mnt/c/Program\ Files/JetBrains/PhpStorm\ 2022.2/bin/phpstorm64.exe ."
+alias ps="pstorm"

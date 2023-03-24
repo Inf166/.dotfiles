@@ -153,6 +153,10 @@ stow starship
 stow zsh
 
 echo ""
+banner Symlinking bash_aliases for ddev ...
+ln -s ~/.dotfiles/bash/.bash_aliases ~/.ddev/homeadditions/.bash_aliases
+
+echo ""
 banner Adding zsh as a login shell ...
 command -v zsh | sudo tee -a /etc/shells
 

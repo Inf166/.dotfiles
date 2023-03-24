@@ -74,16 +74,16 @@ function run_cmd() {
 # Sections of the Script
 
 function update_system() {
-    cmd_describe ⧗ Updating local system ...
+    cmd_describe "⧗ Updating local system ..."
     run_cmd "sudo apt update && apt upgrade -y"
     sudo apt update && apt upgrade -y
     run_cmd "sudo apt-get update && apt-get upgrade -y"
     sudo apt-get update && apt-get upgrade -y
-    cmd_success ✓ Updated local system
+    cmd_success "✓ Updated local system"
 }
 
 function get_user_info() {
-    cmd_describe ⧗ Getting informations ...
+    cmd_describe "⧗ Getting informations ..."
     prompt_user What should the ssh key be named?
     read -p "➤ " sshkeyname
     uskname="$sshkeyname"
@@ -93,11 +93,11 @@ function get_user_info() {
     prompt_user What is your name for the git log?
     read -p "➤ " name
     uname="$name"
-    cmd_success ✓ Thank you!
+    cmd_success "✓ Thank you!"
 }
 
 function generate_ssh_key() {
-    cmd_describe ⧗ Creating new ssh key for you ...
+    cmd_describe "⧗ Creating new ssh key for you ..."
     run_cmd mkdir ~/.ssh
     ~/.ssh
     run_cmd cd ~/.ssh
@@ -110,11 +110,11 @@ function generate_ssh_key() {
     ssh-add ~/.ssh/${uskname}
     run_cmd cd ~/.dotfiles
     cd ~/.dotfiles
-    cmd_success ✓ Generated ssh key
+    cmd_success "✓ Generated ssh key"
 }
 
 function write_gitconfig() {
-    cmd_describe ⧗ Writing gitconfig ...
+    cmd_describe "⧗ Writing gitconfig ..."
     run_cmd cd ~/.dotfiles/git/
     cd ~/.dotfiles/git/
     run_cmd "echo '	name = ${name}' >> .gitconfig"
@@ -123,39 +123,39 @@ function write_gitconfig() {
     echo "	email = ${email}" >> .gitconfig
     run_cmd cd ~/.dotfiles
     cd ~/.dotfiles
-    cmd_success ✓ Gitconfig written
+    cmd_success "✓ Gitconfig written"
 }
 
 function backup_bashfiles() {
-    cmd_describe ⧗ Backing up local files from WSL .bashrc, .profile ...
+    cmd_describe "⧗ Backing up local files from WSL .bashrc, .profile ..."
     run_cmd mkdir ~/.backups
     mkdir ~/.backups
     run_cmd mv ~/.bashrc ~/.backups/.bashrc
     mv ~/.bashrc ~/.backups/.bashrc
     run_cmd mv ~/.profile ~/.backups/.profile
     mv ~/.profile ~/.backups/.profile
-    cmd_success ✓ Backup complete
+    cmd_success "✓ Backup complete"
 }
 
 function install_curl() {
-    cmd_describe ⧗ Installing curl ...
+    cmd_describe "⧗ Installing curl ..."
     run_cmd "sudo apt install curl -y"
     sudo apt install curl -y
-    cmd_success ✓ Installed curl
+    cmd_success "✓ Installed curl"
 }
 
 function install_nix() {
-    cmd_describe ⧗ Installing nix-package-manager ...
+    cmd_describe "⧗ Installing nix-package-manager ..."
     run_cmd "curl -L https://nixos.org/nix/install | sh"
     curl -L https://nixos.org/nix/install | sh
-    cmd_success ✓ Installed nix-package-manager
+    cmd_success "✓ Installed nix-package-manager"
 
-    cmd_describe ⧗ Sourcing nix ...
+    cmd_describe "⧗ Sourcing nix ..."
     run_cmd ". ~/.nix-profile/etc/profile.d/nix.sh"
     . ~/.nix-profile/etc/profile.d/nix.sh
-    cmd_success ✓ Sourced nix.sh
+    cmd_success "✓ Sourced nix.sh"
 
-    cmd_describe ⧗ Installing nix packages ...
+    cmd_describe "⧗ Installing nix packages ..."
     nix-env -iA \
         nixpkgs.antibody \
         nixpkgs.autojump \
@@ -166,11 +166,11 @@ function install_nix() {
         nixpkgs.starship \
         nixpkgs.stow \
         nixpkgs.zsh
-    cmd_success ✓ Installed nix-packages
+    cmd_success "✓ Installed nix-packages"
 }
 
 function install_ddev() {
-    cmd_describe ⧗ Installing ddev ...
+    cmd_describe "⧗ Installing ddev ..."
     run_cmd "sudo apt install curl -y"
     run_cmd "curl -fsSL https://apt.fury.io/drud/gpg.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/ddev.gpg > /dev/null"
     curl -fsSL https://apt.fury.io/drud/gpg.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/ddev.gpg > /dev/null
@@ -178,11 +178,11 @@ function install_ddev() {
     echo "deb [signed-by=/etc/apt/trusted.gpg.d/ddev.gpg] https://apt.fury.io/drud/ * *" | sudo tee /etc/apt/sources.list.d/ddev.list
     run_cmd "sudo apt update && sudo apt install -y ddev"
     sudo apt update && sudo apt install -y ddev
-    cmd_success ✓ Installed ddev
+    cmd_success "✓ Installed ddev"
 }
 
 function stow_files() {
-    cmd_describe ⧗ Stowing dotfiles ...
+    cmd_describe "⧗ Stowing dotfiles ..."
     run_cmd stow bash
     stow bash
     run_cmd stow git
@@ -191,18 +191,18 @@ function stow_files() {
     stow starship
     run_cmd stow zsh
     stow zsh
-    cmd_success ✓ Stowed dotfiles
+    cmd_success "✓ Stowed dotfiles"
 }
 
 function symlink_ddev_aliases() {
-    cmd_describe ⧗ Symlinking bash_aliases for ddev ...
+    cmd_describe "⧗ Symlinking bash_aliases for ddev ..."
     run_cmd "ln -s ~/.dotfiles/bash/.bash_aliases ~/.ddev/homeadditions/.bash_aliases"
     ln -s ~/.dotfiles/bash/.bash_aliases ~/.ddev/homeadditions/.bash_aliases
-    cmd_success ✓ Symlinked bash_aliases
+    cmd_success "✓ Symlinked bash_aliases"
 }
 
 function setup_zsh() {
-    cmd_describe ⧗ Adding zsh as a login shell ...
+    cmd_describe "⧗ Adding zsh as a login shell ..."
     run_cmd "command -v zsh | sudo tee -a /etc/shells"
     command -v zsh | sudo tee -a /etc/shells
 
@@ -214,11 +214,11 @@ function setup_zsh() {
     run_cmd "antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh"
     antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
 
-    cmd_success ✓ zsh is set up
+    cmd_success "✓ zsh is set up"
 }
 
 function print_pub_key() {
-    cmd_describe ⧗ Printing public ssh key so you can add it to Bitbucket/GitHub ...
+    cmd_describe "⧗ Printing public ssh key so you can add it to Bitbucket/GitHub ..."
     run_cmd "bat ~/.ssh/${uskname}.pub"
     bat ~/.ssh/${uskname}.pub
 }
@@ -228,11 +228,11 @@ function print_pub_key() {
 echo "force_color_prompt=yes" >> ~/.bashrc
 source ~/.bashrc
 
-cmd_success PORTABLE DEVELOPMENT ENVIROMENT INSTALLER
+cmd_success "PORTABLE DEVELOPMENT ENVIROMENT INSTALLER"
 
-cmd_error ⚠ During this script we download and install some packages with sudo ⚠
+cmd_error "⚠ During this script we download and install some packages with sudo ⚠"
 
-prompt_user What do you want to do?
+prompt_user "What do you want to do?"
 
 PS3="➤ "
 
@@ -272,7 +272,7 @@ while $show_options; do
         break
         ;;
       "Quit")
-        cmd_error Exiting Script...
+        cmd_error "Exiting Script..."
         show_options=false
         break
         ;;

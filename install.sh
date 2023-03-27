@@ -253,9 +253,6 @@ function print_pub_key() {
 
 # Starting the Script
 
-echo "force_color_prompt=yes" >> ~/.bashrc
-source ~/.bashrc
-
 cmd_success "PORTABLE DEVELOPMENT ENVIROMENT INSTALLER"
 
 cmd_error "During this script we download and install some packages with sudo"
@@ -272,6 +269,8 @@ while $show_options; do
     case $opt in
       "Full installation")
         clear
+        echo "force_color_prompt=yes" >> ~/.bashrc
+        source ~/.bashrc
         update_system
         get_user_info
         generate_ssh_key

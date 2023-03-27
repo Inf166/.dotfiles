@@ -69,7 +69,7 @@ alias python='python3'
 alias ds='docker ps'
 
 # DDEV
-alias ddevup="ddev start"
+alias ddevup="ddev start; ddev auth ssh;"
 alias ddevdown="ddev stop"
 alias poweroff="ddev poweroff"
 

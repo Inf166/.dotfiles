@@ -181,6 +181,31 @@ function install_ddev() {
     cmd_success "✓ Installed ddev"
 }
 
+function install_composer() {
+    cmd_describe "⧗ Installing php-cli ..."
+    
+    
+    run_cmd "sudo apt install php-cli unzip"
+    sudo apt install php-cli unzip
+
+    cmd_success "✓ Installed php-cli"
+    cmd_describe "⧗ Installing composer ..."
+
+    run_cmd "curl -sS https://getcomposer.org/installer -o ~/tmp/composer-setup.php"
+    curl -sS https://getcomposer.org/installer -o ~/tmp/composer-setup.php
+
+    run_cmd "HASH=`curl sS https://composer.github.io/installer.sig`"
+    HASH=`curl -sS https://composer.github.io/installer.sig`
+
+    run_cmd "php -r 'if (hash_file(SHA384, ~/tmp/composer-setup.php') === $HASH) { echo Installer verified; } else { echo Installer corrupt; unlink(~/tmp/composer-setup.php); } echo PHP_EOL;'"
+    php -r "if (hash_file('SHA384', '~/tmp/composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('~/tmp/composer-setup.php'); } echo PHP_EOL;"
+
+    run_cmd "sudo php ~/tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer"
+    sudo php ~/tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
+
+    cmd_success "✓ Installed composer"
+}
+
 function stow_files() {
     cmd_describe "⧗ Stowing dotfiles ..."
     run_cmd stow bash
@@ -255,6 +280,7 @@ while $show_options; do
         install_curl
         install_nix
         install_ddev
+        install_composer
         stow_files
         symlink_ddev_aliases
         setup_zsh

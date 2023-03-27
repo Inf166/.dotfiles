@@ -210,11 +210,14 @@ function setup_zsh() {
     run_cmd "sudo chsh -s which zsh USER"
     sudo chsh -s $(which zsh) $USER
 
+    cmd_success "✓ zsh is set up"
+}
+
+function bundle_zsh_plugins() {
     cmd_describe ⧗ Bundling zsh plugins ... 
     run_cmd "antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh"
     antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
-
-    cmd_success "✓ zsh is set up"
+    cmd_success "✓ zsh plugins bundled"
 }
 
 function print_pub_key() {
@@ -230,13 +233,13 @@ source ~/.bashrc
 
 cmd_success "PORTABLE DEVELOPMENT ENVIROMENT INSTALLER"
 
-cmd_error "⚠ During this script we download and install some packages with sudo ⚠"
+cmd_error "❗ During this script we download and install some packages with sudo ❗"
 
 prompt_user "What do you want to do?"
 
 PS3="➤ "
 
-options=("Full installation" "Setup gitconfig" "Symlink ddev" "Quit")
+options=("Full installation" "Generate new ssh-key" "Bundle zsh-plugins" "Setup gitconfig" "Symlink ddev" "Quit")
 show_options=true
 
 while $show_options; do
@@ -255,9 +258,22 @@ while $show_options; do
         stow_files
         symlink_ddev_aliases
         setup_zsh
+        bundle_zsh_plugins
         print_pub_key
         cmd_success "✓ Installation finished."
         show_options=false
+        break
+        ;;
+      "Generate new ssh-key")
+        clear
+        get_user_info
+        generate_ssh_key
+        print_pub_key
+        break
+        ;;
+      "Bundle zsh-plugins")
+        clear
+        bundle_zsh_plugins
         break
         ;;
       "Setup gitconfig")

@@ -258,7 +258,7 @@ source ~/.bashrc
 
 cmd_success "PORTABLE DEVELOPMENT ENVIROMENT INSTALLER"
 
-cmd_error "❗ During this script we download and install some packages with sudo ❗"
+cmd_error "During this script we download and install some packages with sudo"
 
 prompt_user "What do you want to do?"
 
@@ -314,7 +314,7 @@ while $show_options; do
         break
         ;;
       "Quit")
-        cmd_error "Exiting Script..."
+        cmd_error "Leaving Script ..."
         show_options=false
         break
         ;;

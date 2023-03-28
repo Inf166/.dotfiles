@@ -119,4 +119,9 @@ fi
 # nix
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi
 
-eval "$(starship init bash)"
+# starship
+if [ -x ~/starship ]; then
+    eval "$(~/starship init bash)"
+elif command -v starship &> /dev/null; then
+    eval "$(starship init bash)"
+fi

@@ -220,9 +220,19 @@ function stow_files() {
 }
 
 function symlink_ddev_aliases() {
-    cmd_describe "⧗ Symlinking bash_aliases for ddev ..."
+    cmd_describe "⧗ Symlinking bash configuration for ddev ..."
+
     run_cmd "ln -s ~/.dotfiles/bash/.bash_aliases ~/.ddev/homeadditions/.bash_aliases"
     ln -s ~/.dotfiles/bash/.bash_aliases ~/.ddev/homeadditions/.bash_aliases
+    run_cmd "ln -s ~/.dotfiles/bash/.bashrc ~/.ddev/homeadditions/.bashrc"
+    ln -s ~/.dotfiles/bash/.bashrc ~/.ddev/homeadditions/.bashrc
+    run_cmd "ln -s ~/.nix-profile/bin/starship ~/.ddev/homeadditions/starship"
+    curl -fsSL https://github.com/starship/starship/releases/latest/download/starship-x86_64-unknown-linux-gnu.tar.gz -o ~/.ddev/homeadditions/starship.tar.gz
+    tar -xzf ~/.ddev/homeadditions/starship.tar.gz -C ~/.ddev/homeadditions/
+    # ln -s ~/.nix-profile/bin/starship ~/.ddev/homeadditions/starship
+    run_cmd "ln -s ~/.dotfiles/starship/.config ~/.ddev/homeadditions/.config"
+    ln -s ~/.dotfiles/starship/.config ~/.ddev/homeadditions/.config
+
     cmd_success "✓ Symlinked bash_aliases"
 }
 

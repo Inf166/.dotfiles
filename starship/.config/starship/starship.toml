@@ -1,204 +1,213 @@
 [character]
-success_symbol = "[>](bold green)"
-error_symbol = "[x](bold red)"
-vimcmd_symbol = "[<](bold green)"
+success_symbol = '[>](bold green)'
+error_symbol = '[x](bold red)'
+vimcmd_symbol = '[<](bold green)'
 
 [git_commit]
-tag_symbol = " tag "
+tag_symbol = ' tag '
 
 [git_status]
-ahead = ">"
-behind = "<"
-diverged = "<>"
-renamed = "r"
-deleted = "x"
+ahead = '>'
+behind = '<'
+diverged = '<>'
+renamed = 'r'
+deleted = 'x'
 
 [aws]
-symbol = "aws "
+symbol = 'aws '
 
 [bun]
-symbol = "bun "
+symbol = 'bun '
 
 [c]
-symbol = "C "
+symbol = 'C '
 
 [cobol]
-symbol = "cobol "
+symbol = 'cobol '
 
 [conda]
-symbol = "conda "
+symbol = 'conda '
 
 [crystal]
-symbol = "cr "
+symbol = 'cr '
 
 [cmake]
-symbol = "cmake "
+symbol = 'cmake '
 
 [daml]
-symbol = "daml "
+symbol = 'daml '
 
 [dart]
-symbol = "dart "
+symbol = 'dart '
 
 [deno]
-symbol = "deno "
+symbol = 'deno '
 
 [dotnet]
-symbol = ".NET "
+symbol = '.NET '
 
 [directory]
-read_only = " ro"
+read_only = ' ro'
 
 [docker_context]
-symbol = "docker "
+symbol = 'docker '
+disabled = false
 
 [elixir]
-symbol = "exs "
+symbol = 'exs '
 
 [elm]
-symbol = "elm "
+symbol = 'elm '
 
 [fennel]
-symbol = "fnl "
+symbol = 'fnl '
 
 [fossil_branch]
-symbol = "fossil "
+symbol = 'fossil '
 
 [git_branch]
-symbol = "branch "
+symbol = 'branch '
 
 [golang]
-symbol = "go "
+symbol = 'go '
 
 [gradle]
-symbol = "gradle "
+symbol = 'gradle '
 
 [guix_shell]
-symbol = "guix "
+symbol = 'guix '
 
 [hg_branch]
-symbol = "hg "
+symbol = 'hg '
 
 [java]
-symbol = "java "
+symbol = 'java '
 
 [julia]
-symbol = "jl "
+symbol = 'jl '
 
 [kotlin]
-symbol = "kt "
+symbol = 'kt '
 
 [lua]
-symbol = "lua "
+symbol = 'lua '
 
 [nodejs]
-symbol = "nodejs "
+symbol = 'nodejs '
 
 [memory_usage]
-symbol = "memory "
+symbol = 'memory '
 
 [meson]
-symbol = "meson "
+symbol = 'meson '
 
 [nim]
-symbol = "nim "
+symbol = 'nim '
 
 [nix_shell]
-symbol = "nix "
+symbol = 'nix '
 
 [ocaml]
-symbol = "ml "
+symbol = 'ml '
 
 [opa]
-symbol = "opa "
+symbol = 'opa '
 
 [os.symbols]
-Alpine = "alp "
-Amazon = "amz "
-Android = "andr "
-Arch = "rch "
-CentOS = "cent "
-Debian = "deb "
-DragonFly = "dfbsd "
-Emscripten = "emsc "
-EndeavourOS = "ndev "
-Fedora = "fed "
-FreeBSD = "fbsd "
-Garuda = "garu "
-Gentoo = "gent "
-HardenedBSD = "hbsd "
-Illumos = "lum "
-Linux = "lnx "
-Macos = "mac "
-Manjaro = "mjo "
-Mariner = "mrn "
-MidnightBSD = "mid "
-Mint = "mint "
-NetBSD = "nbsd "
-NixOS = "nix "
-OpenBSD = "obsd "
-OpenCloudOS = "ocos "
-openEuler = "oeul "
-openSUSE = "osuse "
-OracleLinux = "orac "
-Pop = "pop "
-Raspbian = "rasp "
-Redhat = "rhl "
-RedHatEnterprise = "rhel "
-Redox = "redox "
-Solus = "sol "
-SUSE = "suse "
-Ubuntu = "ubnt "
-Unknown = "unk "
-Windows = "win "
+Alpine = 'alp '
+Amazon = 'amz '
+Android = 'andr '
+Arch = 'rch '
+CentOS = 'cent '
+Debian = 'deb '
+DragonFly = 'dfbsd '
+Emscripten = 'emsc '
+EndeavourOS = 'ndev '
+Fedora = 'fed '
+FreeBSD = 'fbsd '
+Garuda = 'garu '
+Gentoo = 'gent '
+HardenedBSD = 'hbsd '
+Illumos = 'lum '
+Linux = 'lnx '
+Macos = 'mac '
+Manjaro = 'mjo '
+Mariner = 'mrn '
+MidnightBSD = 'mid '
+Mint = 'mint '
+NetBSD = 'nbsd '
+NixOS = 'nix '
+OpenBSD = 'obsd '
+OpenCloudOS = 'ocos '
+openEuler = 'oeul '
+openSUSE = 'osuse '
+OracleLinux = 'orac '
+Pop = 'pop '
+Raspbian = 'rasp '
+Redhat = 'rhl '
+RedHatEnterprise = 'rhel '
+Redox = 'redox '
+Solus = 'sol '
+SUSE = 'suse '
+Ubuntu = 'ubnt '
+Unknown = 'unk '
+Windows = 'win '
 
 [package]
-symbol = "pkg "
+symbol = 'pkg '
 
 [perl]
-symbol = "pl "
+symbol = 'pl '
 
 [php]
-symbol = "php "
+symbol = 'php '
 
 [pijul_channel]
-symbol = "pijul "
+symbol = 'pijul '
 
 [pulumi]
-symbol = "pulumi "
+symbol = 'pulumi '
 
 [purescript]
-symbol = "purs "
+symbol = 'purs '
 
 [python]
-symbol = "py "
+symbol = 'py '
 
 [raku]
-symbol = "raku "
+symbol = 'raku '
 
 [ruby]
-symbol = "rb "
+symbol = 'rb '
 
 [rust]
-symbol = "rs "
+symbol = 'rs '
 
 [scala]
-symbol = "scala "
+symbol = 'scala '
 
 [spack]
-symbol = "spack "
+symbol = 'spack '
 
 [status]
-symbol = "[x](bold red) "
+symbol = '[x](bold red) '
 
 [sudo]
-symbol = "sudo "
+symbol = 'sudo '
 
 [swift]
-symbol = "swift "
+symbol = 'swift '
 
 [terraform]
-symbol = "terraform "
+symbol = 'terraform '
 
 [zig]
-symbol = "zig "
+symbol = 'zig '
+
+# Shell section
+[shell]
+bash_indicator = 'bash'
+zsh_indicator = 'zsh'
+unknown_indicator = '$'
+style = 'bold yellow'
+disabled = false

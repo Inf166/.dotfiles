@@ -75,6 +75,7 @@ alias poweroff="ddev poweroff"
 
 alias ddevssh="ddev ssh"
 alias snapshot="ddev snapshot --name $(date +%Y-%m-%d_%H-%M)-${PWD##*/}"
+alias dremove="ddev delete --omit-snapshot"
 
 # DDEV Launch
 alias describe="ddev describe"

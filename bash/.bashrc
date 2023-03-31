@@ -119,6 +119,10 @@ fi
 # nix
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi
 
+# Define config path of starship
+export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
+export STARSHIP_CACHE=$HOME/.config/starship/cache
+
 # starship
 if [ -x ~/starship ]; then
     eval "$(~/starship init bash)"

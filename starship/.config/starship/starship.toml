@@ -12,6 +12,7 @@ behind = '<'
 diverged = '<>'
 renamed = 'r'
 deleted = 'x'
+style = 'purple'
 
 [aws]
 symbol = 'aws '
@@ -48,6 +49,7 @@ symbol = '.NET '
 
 [directory]
 read_only = ' ro'
+style = 'yellow bold'
 
 [docker_context]
 symbol = 'docker '
@@ -67,6 +69,7 @@ symbol = 'fossil '
 
 [git_branch]
 symbol = 'branch '
+style = 'bold blue'
 
 [golang]
 symbol = 'go '
@@ -209,5 +212,19 @@ symbol = 'zig '
 bash_indicator = 'bash'
 zsh_indicator = 'zsh'
 unknown_indicator = '$'
-style = 'bold yellow'
+style = 'bold purple'
+disabled = false
+
+[username]
+style_user = 'green bold'
+style_root = 'red bold'
+format = '[$user]($style) at '
+show_always = true
+disabled = false
+
+[hostname]
+ssh_only = false
+ssh_symbol = 'ssh on '
+style = 'bold dimmed purple'
+format = '[$ssh_symbol](bold blue)[$hostname](bold red) in '
 disabled = false

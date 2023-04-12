@@ -130,6 +130,10 @@ alias fuckcomposer="ddev composer clear-cache; rm -rf vendor; rm composer.lock"
 
 # Development Aliases
 alias boot="ddevup; compu; dbupdate; be; npmi; npmb; fe;"
+alias build-d="ddev . bin/md2pdf build --config bifa-documentation.yaml"
+alias build-g="ddev . bin/md2pdf build --config editor-guide.yaml;"
 alias lintall="npmlc; npmlf; complint;"
-alias pstorm="/mnt/c/Program\ Files/JetBrains/PhpStorm\ 2022.2/bin/phpstorm64.exe ."
+alias pstorm="/mnt/c/Program\ Files/JetBrains/PhpStorm\ 2023.1/bin/phpstorm64.exe ."
+alias wstorm="/mnt/c/Program\ Files/JetBrains/WebStorm\ 2023.1/bin/webstorm64.exe ."
+alias ij="/mnt/c/Program\ Files/JetBrains/IntelliJ\ IDEA\ 2022.3.3/bin/idea64.exe ."
 alias ps="pstorm"

@@ -14,39 +14,6 @@ renamed = 'r'
 deleted = 'x'
 style = 'purple'
 
-[aws]
-symbol = 'aws '
-
-[bun]
-symbol = 'bun '
-
-[c]
-symbol = 'C '
-
-[cobol]
-symbol = 'cobol '
-
-[conda]
-symbol = 'conda '
-
-[crystal]
-symbol = 'cr '
-
-[cmake]
-symbol = 'cmake '
-
-[daml]
-symbol = 'daml '
-
-[dart]
-symbol = 'dart '
-
-[deno]
-symbol = 'deno '
-
-[dotnet]
-symbol = '.NET '
-
 [directory]
 read_only = ' ro'
 style = 'yellow bold'
@@ -55,157 +22,14 @@ style = 'yellow bold'
 symbol = 'docker '
 disabled = false
 
-[elixir]
-symbol = 'exs '
-
-[elm]
-symbol = 'elm '
-
-[fennel]
-symbol = 'fnl '
-
-[fossil_branch]
-symbol = 'fossil '
-
 [git_branch]
-symbol = 'branch '
 style = 'bold blue'
-
-[golang]
-symbol = 'go '
-
-[gradle]
-symbol = 'gradle '
-
-[guix_shell]
-symbol = 'guix '
-
-[hg_branch]
-symbol = 'hg '
-
-[java]
-symbol = 'java '
-
-[julia]
-symbol = 'jl '
-
-[kotlin]
-symbol = 'kt '
-
-[lua]
-symbol = 'lua '
-
-[nodejs]
-symbol = 'nodejs '
-
-[memory_usage]
-symbol = 'memory '
-
-[meson]
-symbol = 'meson '
-
-[nim]
-symbol = 'nim '
-
-[nix_shell]
-symbol = 'nix '
-
-[ocaml]
-symbol = 'ml '
-
-[opa]
-symbol = 'opa '
-
-[os.symbols]
-Alpine = 'alp '
-Amazon = 'amz '
-Android = 'andr '
-Arch = 'rch '
-CentOS = 'cent '
-Debian = 'deb '
-DragonFly = 'dfbsd '
-Emscripten = 'emsc '
-EndeavourOS = 'ndev '
-Fedora = 'fed '
-FreeBSD = 'fbsd '
-Garuda = 'garu '
-Gentoo = 'gent '
-HardenedBSD = 'hbsd '
-Illumos = 'lum '
-Linux = 'lnx '
-Macos = 'mac '
-Manjaro = 'mjo '
-Mariner = 'mrn '
-MidnightBSD = 'mid '
-Mint = 'mint '
-NetBSD = 'nbsd '
-NixOS = 'nix '
-OpenBSD = 'obsd '
-OpenCloudOS = 'ocos '
-openEuler = 'oeul '
-openSUSE = 'osuse '
-OracleLinux = 'orac '
-Pop = 'pop '
-Raspbian = 'rasp '
-Redhat = 'rhl '
-RedHatEnterprise = 'rhel '
-Redox = 'redox '
-Solus = 'sol '
-SUSE = 'suse '
-Ubuntu = 'ubnt '
-Unknown = 'unk '
-Windows = 'win '
-
-[package]
-symbol = 'pkg '
-
-[perl]
-symbol = 'pl '
-
-[php]
-symbol = 'php '
-
-[pijul_channel]
-symbol = 'pijul '
-
-[pulumi]
-symbol = 'pulumi '
-
-[purescript]
-symbol = 'purs '
-
-[python]
-symbol = 'py '
-
-[raku]
-symbol = 'raku '
-
-[ruby]
-symbol = 'rb '
-
-[rust]
-symbol = 'rs '
-
-[scala]
-symbol = 'scala '
-
-[spack]
-symbol = 'spack '
 
 [status]
 symbol = '[x](bold red) '
 
 [sudo]
 symbol = 'sudo '
-
-[swift]
-symbol = 'swift '
-
-[terraform]
-symbol = 'terraform '
-
-[zig]
-symbol = 'zig '
 
 # Shell section
 [shell]
@@ -228,3 +52,141 @@ ssh_symbol = 'ssh on '
 style = 'bold dimmed purple'
 format = '[$ssh_symbol](bold blue)[$hostname](bold red) in '
 disabled = false
+
+[php]
+disabled = true
+
+[nodejs]
+disabled = true
+
+[package]
+disabled = true
+
+[swift]
+disabled = true
+
+[terraform]
+disabled = true
+
+[zig]
+disabled = true
+
+[golang]
+disabled = true
+
+[gradle]
+disabled = true
+
+[guix_shell]
+disabled = true
+
+[hg_branch]
+disabled = true
+
+[java]
+disabled = true
+
+[julia]
+disabled = true
+
+[kotlin]
+disabled = true
+
+[lua]
+disabled = true
+
+[memory_usage]
+disabled = true
+
+[meson]
+disabled = true
+
+[nim]
+disabled = true
+
+[nix_shell]
+disabled = true
+
+[ocaml]
+disabled = true
+
+[opa]
+disabled = true
+
+[os]
+disabled = true
+
+[perl]
+disabled = true
+
+[pijul_channel]
+disabled = true
+
+[pulumi]
+disabled = true
+
+[purescript]
+disabled = true
+
+[python]
+disabled = true
+
+[raku]
+disabled = true
+
+[ruby]
+disabled = true
+
+[rust]
+disabled = true
+
+[scala]
+disabled = true
+
+[spack]
+disabled = true
+
+[elixir]
+disabled = true
+
+[elm]
+disabled = true
+
+[fennel]
+disabled = true
+
+[fossil_branch]
+disabled = true
+
+[aws]
+disabled = true
+
+[bun]
+disabled = true
+
+[c]
+disabled = true
+
+[cobol]
+disabled = true
+
+[conda]
+disabled = true
+
+[crystal]
+disabled = true
+
+[cmake]
+disabled = true
+
+[daml]
+disabled = true
+
+[dart]
+disabled = true
+
+[deno]
+disabled = true
+
+[dotnet]
+disabled = true

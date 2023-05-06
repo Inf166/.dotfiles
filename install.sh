@@ -144,29 +144,12 @@ function install_curl() {
     cmd_success "✓ Installed curl"
 }
 
-function install_nix() {
-    cmd_describe "⧗ Installing nix-package-manager ..."
-    run_cmd "curl -L https://nixos.org/nix/install | sh"
-    curl -L https://nixos.org/nix/install | sh
-    cmd_success "✓ Installed nix-package-manager"
-
-    cmd_describe "⧗ Sourcing nix ..."
-    run_cmd ". ~/.nix-profile/etc/profile.d/nix.sh"
-    . ~/.nix-profile/etc/profile.d/nix.sh
-    cmd_success "✓ Sourced nix.sh"
-
-    cmd_describe "⧗ Installing nix packages ..."
-    nix-env -iA \
-        nixpkgs.antibody \
-        nixpkgs.autojump \
-        nixpkgs.bat \
-        nixpkgs.direnv \
-        nixpkgs.git \
-        nixpkgs.keychain \
-        nixpkgs.starship \
-        nixpkgs.stow \
-        nixpkgs.zsh
-    cmd_success "✓ Installed nix-packages"
+function install_dependencies() {
+    cmd_describe "⧗ Installing dev tools ..."
+    sudo apt-get install -y autojump bat direnv git keychain stow zsh
+    curl -sS https://starship.rs/install.sh | sh
+    cd ~; mkdir .config; cd .config; git clone https://github.com/ohmyzsh/ohmyzsh.git oh-my-zsh
+    cmd_success "✓ Installed dev tools"
 }
 
 function install_ddev() {
@@ -253,6 +236,27 @@ function bundle_zsh_plugins() {
     run_cmd "antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh"
     antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
     cmd_success "✓ zsh plugins bundled"
+}
+
+function build_lazy_vim() {
+  # cd ~ && git clone https://github.com/LuaJIT/LuaJIT.git;
+  # cd LuaJIT && make;
+  # sudo make install;
+  # sudo ln -sf luajit-2.1.0-beta3 /usr/local/bin/luajit;
+  cd ~;
+  sudo apt install -y ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl;
+  sudo apt install -y luajit;
+  git clone https://github.com/neovim/neovim.git;
+  cd neovim && make CMAKE_BUILD_TYPE=Release && sudo make install;
+
+  # required
+  mv ~/.config/nvim ~/.config/nvim.bak;
+  # optional but recommended
+  mv ~/.local/share/nvim ~/.local/share/nvim.bak;
+  mv ~/.local/state/nvim ~/.local/state/nvim.bak;
+  mv ~/.cache/nvim ~/.cache/nvim.bak;
+  git clone https://github.com/LazyVim/starter ~/.config/nvim;
+  rm -rf ~/.config/nvim/.git;
 }
 
 function print_pub_key() {

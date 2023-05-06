@@ -3,37 +3,23 @@
 #  / /\__ \ __ |
 # /___|___/_||_|
 
-# Export nvm completion settings for lukechilds/zsh-nvm plugin
-# Note: This must be exported before the plugin is bundled
-export NVM_DIR=${HOME}/.nvm
-export NVM_COMPLETION=true
-
-# Uncomment if comming from bash
+# If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# This loads nvm
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-# This loads nvm bash_completion
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.config/oh-my-zsh"
 
-source ${HOME}/.zsh_plugins.sh
+# Would you like to use another custom folder than $ZSH/custom?
+ZSH_CUSTOM="$HOME/.config/zsh"
 
-source $HOME/.bash_aliases
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git alias-finder autojump git git-extras keychain node npm ssh-agent web-search zsh-nvm zsh-syntax-highlighting)
 
-# Restart docker?
-wsl.exe -u root service docker status > /dev/null || wsl.exe -u root service docker start > /dev/null
-
-# Adjusts the agents that keychain manages:
-zstyle :omz:plugins:keychain agents ssh
-# Add sshkey on startup but wait for use
-# (remove --noask for instant prompt and ask only if id is needed)
-eval $(keychain -q --noask --eval id_ed25519)
-
-# DIRCOLORS (MacOS)
-export CLICOLOR=1
-
-# nix
-if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi
+source $ZSH/oh-my-zsh.sh
 
 # Define config path of starship
 export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml

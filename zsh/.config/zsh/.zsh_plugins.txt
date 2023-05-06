@@ -1,0 +1,17 @@
+alias-finder
+autojump
+command-not-found
+git
+git-extras
+keychain
+node
+npm
+ssh-agent
+web-search
+lukechilds/zsh-nvm
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-completions
+zsh-users/zsh-syntax-highlighting
+zsh-users/zsh-history-substring-search
+MichaelAquilina/zsh-you-should-use
+MichaelAquilina/zsh-auto-notify

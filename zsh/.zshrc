@@ -12,6 +12,12 @@ export ZSH="$HOME/.config/oh-my-zsh"
 # Would you like to use another custom folder than $ZSH/custom?
 ZSH_CUSTOM="$HOME/.config/zsh"
 
+# Bash history
+HISTFILE=~/.bash_history
+HISTSIZE=10000
+SAVEHIST=1000
+setopt SHARE_HISTORY
+
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/

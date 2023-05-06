@@ -22,7 +22,7 @@ set echo-control-characters off
 
 # Bash Keybindings
 "\C-h":"cd ~/\n"
-"\C-l":"exa -la --no-permissions --no-user\n"
+"\C-f":"exa -la --no-permissions --no-user\n"
 "\C-b":"cd ..\n"
 "\C-p":"cd ~/Projects/\n"
 # ALT + S

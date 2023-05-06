@@ -151,6 +151,7 @@ function install_dependencies() {
     sudo apt install fd-find;
     sudo apt install exa;
     sudo apt install duf;
+    sudo apt install dos2unix;
     curl -sS https://starship.rs/install.sh | sh;
     cmd_success "✓ Installed dev tools"
 }

@@ -17,7 +17,7 @@ ZSH_CUSTOM="$HOME/.config/zsh"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git alias-finder autojump git git-extras keychain node npm ssh-agent web-search zsh-nvm zsh-syntax-highlighting)
+plugins=(git autojump git git-extras node npm ssh-agent web-search zsh-nvm zsh-syntax-highlighting zsh-autosuggestions zsh-completions zsh-history-substring-search zsh-you-should-use)
 
 source $ZSH/oh-my-zsh.sh
 

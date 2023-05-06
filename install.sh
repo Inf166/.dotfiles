@@ -146,12 +146,11 @@ function install_curl() {
 
 function install_dependencies() {
     cmd_describe "⧗ Installing dev tools ..."
-    sudo apt-get install -y autojump bat git stow zsh fish direnv keychain
+    sudo apt-get install -y autojump bat git stow zsh fish
     sudo apt install fd-find
     sudo apt install exa
     sudo apt install duf
     curl -sS https://starship.rs/install.sh | sh
-    cd ~; mkdir .config; cd .config; git clone https://github.com/ohmyzsh/ohmyzsh.git oh-my-zsh
     cmd_success "✓ Installed dev tools"
 }
 
@@ -169,7 +168,6 @@ function install_ddev() {
 
 function install_composer() {
     cmd_describe "⧗ Installing php-cli ..."
-    
     
     run_cmd "sudo apt install php-cli unzip"
     sudo apt install php-cli unzip
@@ -202,6 +200,8 @@ function stow_files() {
     stow starship
     run_cmd stow zsh
     stow zsh
+    run_cmd stow fish
+    stow fish
     cmd_success "✓ Stowed dotfiles"
 }
 
@@ -233,10 +233,17 @@ function setup_zsh() {
 }
 
 function bundle_zsh_plugins() {
-    cmd_describe ⧗ Bundling zsh plugins ... 
-    run_cmd "antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh"
-    antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
-    cmd_success "✓ zsh plugins bundled"
+    cmd_describe ⧗ Cloning zsh plugins ... 
+    cd ~/.config; 
+    git clone https://github.com/ohmyzsh/ohmyzsh.git "~/.config/oh-my-zsh";
+    git clone "https://github.com/lukechilds/zsh-nvm.git" "~/.config/zsh/plugins/zsh-nvm";
+    git clone "https://github.com/zsh-users/zsh-autosuggestions.git" "~/.config/zsh/plugins/zsh-autosuggestions";
+    git clone "https://github.com/zsh-users/zsh-completions.git" "~/.config/zsh/plugins/zsh-completions";
+    git clone "https://github.com/zsh-users/zsh-syntax-highlighting.git" "~/.config/zsh/plugins/zsh-syntax-highlighting";
+    git clone "https://github.com/zsh-users/zsh-history-substring-search.git" "~/.config/zsh/plugins/zsh-history-substring-search";
+    git clone "https://github.com/MichaelAquilina/zsh-you-should-use.git" "~/.config/zsh/plugins/zsh-you-should-use";
+    cd ~/.dotfiles;
+    cmd_success "✓ zsh plugins cloned"
 }
 
 function build_lazy_vim() {

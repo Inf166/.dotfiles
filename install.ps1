@@ -43,8 +43,23 @@ foreach ($package in $packages) {
 $url = 'https://github.com/mjmlio/mjml-app/releases/download/v3.0.4/mjml-app-3.0.4-win.exe'
 $output = "$env:TEMP\mjml-app-3.0.4-win.exe"
 
-Invoke-WebRequest -Uri $url -OutFile $output
-Start-Process -FilePath $output -ArgumentList '/S' -Wait
+Write-Host "Downloading MJML installer from $url..."
+try {
+    Invoke-WebRequest -Uri $url -OutFile $output -UseBasicParsing -ErrorAction Stop -ProgressPreference SilentlyContinue
+} catch {
+    Write-Error "Failed to download MJML installer: $_"
+    exit 1
+}
+
+Write-Host "Installing MJML..."
+try {
+    Start-Process -FilePath $output -ArgumentList '/S' -Wait
+} catch {
+    Write-Error "Failed to install MJML: $_"
+    exit 1
+}
+
+Write-Host "Installation complete."
 
 
 # Download and install Starship for cmd
@@ -73,7 +88,7 @@ $tempFile = "$env:TEMP\Ubuntu-22.04.appx"
 
 Write-Host "Downloading Ubuntu 22.04 appx package from $downloadUrl..."
 try {
-    Invoke-WebRequest -Uri $downloadUrl -OutFile $tempFile -ErrorAction Stop
+    Invoke-WebRequest -Uri $downloadUrl -OutFile $tempFile -UseBasicParsing -ErrorAction Stop -ProgressPreference SilentlyContinue
 } catch {
     Write-Error "Failed to download Ubuntu 22.04 appx package: $_"
     exit 1
@@ -120,7 +135,7 @@ Write-Host "Installation complete. To launch Ubuntu 22.04, run the command 'wsl 
 #     fi
 # fi
 
-# Choco Install of ddev in wsl (requires wsl to be setup)
+# Choco Install of ddev in wsl (requires wsl to be setup and be run in the admin Powershell)
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072;
 iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/ddev/ddev/master/scripts/install_ddev_wsl2_docker_inside.ps1'))
 

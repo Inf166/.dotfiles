@@ -5,7 +5,8 @@ $packages = @(
     "JackieLiu.NotepadsApp",
     "ModernFlyouts.ModernFlyouts",
     "QL-Win.QuickLook",
-    "Docker.DockerDesktop",
+    "lencx.ChatGPT",
+    "DeepL.DeepL",
     "Google.Chrome",
     "Mozilla.Firefox",
     "Notepad++.Notepad++",
@@ -22,6 +23,7 @@ $packages = @(
     "chrisant996.Clink"
     "DEVCOM.JetBrainsMonoNerdFont",
     "DominikReichl.KeePass",
+    "Zoom.Zoom",
     "qutebrowser.qutebrowser"
 )
 
@@ -32,26 +34,8 @@ foreach ($package in $packages) {
     }
 }
 
-# Download and install Jetbrains Mono Nerd Font
-$url = 'https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.0/JetBrainsMono.zip'
-$tempFile = "$env:TEMP\JetBrainsMono.zip"
-$extractionPath = "$env:TEMP\JetBrainsMono"
-
-try {
-    Invoke-WebRequest -Uri $url -OutFile $tempFile
-    Expand-Archive -Path $tempFile -DestinationPath $extractionPath -Force
-
-    foreach ($fontFile in Get-ChildItem "$extractionPath\*" -Include '*.ttf', '*.otf' -Recurse) {
-        Write-Host "Installing $($fontFile.Name)..."
-        $fontPath = Join-Path ([Environment]::GetFolderPath('Fonts')) $fontFile.Name
-        Copy-Item -Path $fontFile.FullName -Destination $fontPath -Force
-    }
-} catch {
-    Write-Warning "Failed to download and install Jetbrains Mono Nerd Font."
-} finally {
-    Remove-Item $tempFile -Force
-    Remove-Item $extractionPath -Recurse -Force
-}
+# Download and install MJML
+# https://github.com/mjmlio/mjml-app/releases/download/v3.0.4/mjml-app-3.0.4-win.exe
 
 # Download and install Starship for cmd
 $starshipLuaPath = "$env:LOCALAPPDATA\clink\starship.lua"
@@ -79,9 +63,13 @@ try {
 # sudo nano /etc/wsl.conf
 # [boot]
 # systemd=true
+
+# Install GUI for WSL2
 # sudo apt update && sudo apt install x11-apps
 # xeyes &
-# xcalc
+# xcalc // Run calculator gui
+
+# Install Docker on WSL2
 # curl -fsSL https://get.docker.com -o get-docker.sh
 # sudo sh get-docker.sh
 # sudo usermod -aG docker $USER

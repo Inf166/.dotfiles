@@ -1,9 +1,10 @@
 # Install packages with winget
 $packages = @(
-    "Microsoft.WindowsTerminal",
     "Git.Git",
     "Microsoft.PowerToys",
     "JackieLiu.NotepadsApp",
+    "ModernFlyouts.ModernFlyouts",
+    "QL-Win.QuickLook",
     "Docker.DockerDesktop",
     "Google.Chrome",
     "Mozilla.Firefox",
@@ -14,10 +15,12 @@ $packages = @(
     "JetBrains.IntelliJIDEA.Ultimate",
     "Microsoft.VisualStudioCode",
     "Spotify.Spotify",
-    "Starship.Starship",
     "Figma.Figma",
+    "Microsoft.WindowsTerminal",
+    "Starship.Starship",
     "Microsoft.Powershell",
     "chrisant996.Clink"
+    "DEVCOM.JetBrainsMonoNerdFont",
     "DominikReichl.KeePass",
     "qutebrowser.qutebrowser"
 )
@@ -64,3 +67,32 @@ try {
     Write-Warning "Failed to download and install Starship for cmd."
 } finally {
 }
+
+
+# WSL install
+# wsl --list --online
+# wsl --install -d Ubuntu-22.04
+# wsl --set-default-version 2
+# wsl --set-default Ubuntu-22.04
+# wsl --set-version Ubuntu-22.04 2
+# sudo apt update && sudo apt full-upgrade
+# sudo nano /etc/wsl.conf
+# [boot]
+# systemd=true
+# sudo apt update && sudo apt install x11-apps
+# xeyes &
+# xcalc
+# curl -fsSL https://get.docker.com -o get-docker.sh
+# sudo sh get-docker.sh
+# sudo usermod -aG docker $USER
+# sudo apt-get update && sudo apt-get install docker-compose-plugin
+# docker --version
+# docker compose version
+# sudo update-alternatives --config iptables
+# Add this to the ~/.profile
+# if grep -q "microsoft" /proc/version > /dev/null 2>&1; then
+#     if service docker status 2>&1 | grep -q "is not running"; then
+#         wsl.exe --distribution "${WSL_DISTRO_NAME}" --user root \
+#             --exec /usr/sbin/service docker start > /dev/null 2>&1
+#     fi
+# fi

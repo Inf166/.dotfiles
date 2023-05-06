@@ -176,22 +176,22 @@ function install_composer() {
     cmd_describe "⧗ Installing php-cli ..."
     
     run_cmd "sudo apt install php-cli unzip"
-    sudo apt install php-cli unzip
+    sudo apt install php-cli unzip;
 
     cmd_success "✓ Installed php-cli"
     cmd_describe "⧗ Installing composer ..."
 
     run_cmd "curl -sS https://getcomposer.org/installer -o ~/tmp/composer-setup.php"
-    curl -sS https://getcomposer.org/installer -o ~/tmp/composer-setup.php
+    curl -sS https://getcomposer.org/installer -o ~/tmp/composer-setup.php;
 
     run_cmd "HASH=`curl sS https://composer.github.io/installer.sig`"
     HASH=`curl -sS https://composer.github.io/installer.sig`
 
     run_cmd "php -r 'if (hash_file(SHA384, ~/tmp/composer-setup.php') === $HASH) { echo Installer verified; } else { echo Installer corrupt; unlink(~/tmp/composer-setup.php); } echo PHP_EOL;'"
-    php -r "if (hash_file('SHA384', '~/tmp/composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('~/tmp/composer-setup.php'); } echo PHP_EOL;"
+    php -r "if (hash_file('SHA384', '~/tmp/composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('~/tmp/composer-setup.php'); } echo PHP_EOL;";
 
     run_cmd "sudo php ~/tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer"
-    sudo php ~/tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
+    sudo php ~/tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer;
 
     cmd_success "✓ Installed composer"
 }
@@ -199,15 +199,15 @@ function install_composer() {
 function stow_files() {
     cmd_describe "⧗ Stowing dotfiles ..."
     run_cmd stow bash
-    stow bash
+    stow bash;
     run_cmd stow git
-    stow git
+    stow git;
     run_cmd stow starship
-    stow starship
+    stow starship;
     run_cmd stow zsh
-    stow zsh
+    stow zsh;
     run_cmd stow fish
-    stow fish
+    stow fish;
     cmd_success "✓ Stowed dotfiles"
 }
 
@@ -215,13 +215,13 @@ function symlink_ddev_aliases() {
     cmd_describe "⧗ Symlinking bash configuration for ddev ..."
     cd ~/.ddev/; mkdir homeadditions;
     run_cmd "ln -s ~/.dotfiles/bash/.bash_aliases ~/.ddev/homeadditions/.bash_aliases"
-    ln -s ~/.dotfiles/bash/.bash_aliases ~/.ddev/homeadditions/.bash_aliases
+    ln -s ~/.dotfiles/bash/.bash_aliases ~/.ddev/homeadditions/.bash_aliases;
     run_cmd "ln -s ~/.dotfiles/bash/.bashrc ~/.ddev/homeadditions/.bashrc"
-    ln -s ~/.dotfiles/bash/.bashrc ~/.ddev/homeadditions/.bashrc
+    ln -s ~/.dotfiles/bash/.bashrc ~/.ddev/homeadditions/.bashrc;
     run_cmd  "ln -s /usr/local/bin/starship ~/.ddev/homeadditions/starship"
-    ln -s /usr/local/bin/starship ~/.ddev/homeadditions/starship
+    ln -s /usr/local/bin/starship ~/.ddev/homeadditions/starship;
     run_cmd "ln -s ~/.dotfiles/starship/.config ~/.ddev/homeadditions/.config"
-    ln -s ~/.dotfiles/starship/.config ~/.ddev/homeadditions/.config
+    ln -s ~/.dotfiles/starship/.config ~/.ddev/homeadditions/.config;
 
     cmd_success "✓ Symlinked bash_aliases"
 }
@@ -282,7 +282,7 @@ function create_working_dirs() {
 function print_pub_key() {
     cmd_describe "⧗ Printing public ssh key so you can add it to Bitbucket/GitHub ..."
     run_cmd "bat ~/.ssh/${uskname}.pub"
-    bat ~/.ssh/${uskname}.pub
+    bat ~/.ssh/${uskname}.pub;
 }
 
 # Starting the Script

@@ -1,6 +1,6 @@
 # .dotfiles
 
-1. Clone this repository
+1. Clone this repository `git clone https://github.com/Inf166/.dotfiles.git`
 2. Run `chmod a+x install.sh`
 3. Run `./install.sh`
 4. Open up new window to initiate `zsh` shell

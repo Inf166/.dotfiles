@@ -99,58 +99,59 @@ function get_user_info() {
 function generate_ssh_key() {
     cmd_describe "⧗ Creating new ssh key for you ..."
     run_cmd mkdir ~/.ssh
-    ~/.ssh
+    mkdir ~/.ssh;
     run_cmd cd ~/.ssh
-    cd ~/.ssh
+    cd ~/.ssh;
     run_cmd "ssh-keygen -t ed25519 -b 4096 -C "${uemail}" -f "${uskname}
-    ssh-keygen -t ed25519 -b 4096 -C "${uemail}" -f "${uskname}"
+    ssh-keygen -t ed25519 -b 4096 -C "${uemail}" -f "${uskname}";
     run_cmd "eval ssh-agent -s"
-    eval "$(ssh-agent -s)"
+    eval "$(ssh-agent -s)";
     run_cmd "ssh-add ~/.ssh/"${uskname}
-    ssh-add ~/.ssh/${uskname}
+    ssh-add ~/.ssh/${uskname};
     run_cmd cd ~/.dotfiles
-    cd ~/.dotfiles
+    cd ~/.dotfiles;
     cmd_success "✓ Generated ssh key"
 }
 
 function write_gitconfig() {
     cmd_describe "⧗ Writing gitconfig ..."
     run_cmd cd ~/.dotfiles/git/
-    cd ~/.dotfiles/git/
+    cd ~/.dotfiles/git/;
     run_cmd "echo '	name = ${name}' >> .gitconfig"
-    echo "	name = ${name}" >> .gitconfig
+    echo "	name = ${name}" >> .gitconfig;
     run_cmd "echo '	email = ${email}' >> .gitconfig"
-    echo "	email = ${email}" >> .gitconfig
+    echo "	email = ${email}" >> .gitconfig;
     run_cmd cd ~/.dotfiles
-    cd ~/.dotfiles
+    cd ~/.dotfiles;
     cmd_success "✓ Gitconfig written"
 }
 
 function backup_bashfiles() {
     cmd_describe "⧗ Backing up local files from WSL .bashrc, .profile ..."
     run_cmd mkdir ~/.backups
-    mkdir ~/.backups
+    mkdir ~/.backups;
     run_cmd mv ~/.bashrc ~/.backups/.bashrc
-    mv ~/.bashrc ~/.backups/.bashrc
+    mv ~/.bashrc ~/.backups/.bashrc;
     run_cmd mv ~/.profile ~/.backups/.profile
-    mv ~/.profile ~/.backups/.profile
+    mv ~/.profile ~/.backups/.profile;
     cmd_success "✓ Backup complete"
 }
 
 function install_curl() {
     cmd_describe "⧗ Installing curl ..."
     run_cmd "sudo apt install curl -y"
-    sudo apt install curl -y
+    sudo apt install curl -y;
     cmd_success "✓ Installed curl"
 }
 
 function install_dependencies() {
     cmd_describe "⧗ Installing dev tools ..."
-    sudo apt-get install -y autojump bat git stow zsh fish
-    sudo apt install fd-find
-    sudo apt install exa
-    sudo apt install duf
-    curl -sS https://starship.rs/install.sh | sh
+    sudo apt-get install -y autojump git stow zsh fish;
+    sudo apt install bat;
+    sudo apt install fd-find;
+    sudo apt install exa;
+    sudo apt install duf;
+    curl -sS https://starship.rs/install.sh | sh;
     cmd_success "✓ Installed dev tools"
 }
 
@@ -163,6 +164,7 @@ function install_ddev() {
     echo "deb [signed-by=/etc/apt/trusted.gpg.d/ddev.gpg] https://apt.fury.io/drud/ * *" | sudo tee /etc/apt/sources.list.d/ddev.list
     run_cmd "sudo apt update && sudo apt install -y ddev"
     sudo apt update && sudo apt install -y ddev
+    ddev
     cmd_success "✓ Installed ddev"
 }
 
@@ -207,7 +209,7 @@ function stow_files() {
 
 function symlink_ddev_aliases() {
     cmd_describe "⧗ Symlinking bash configuration for ddev ..."
-
+    cd ~/.ddev/; mkdir homeadditions;
     run_cmd "ln -s ~/.dotfiles/bash/.bash_aliases ~/.ddev/homeadditions/.bash_aliases"
     ln -s ~/.dotfiles/bash/.bash_aliases ~/.ddev/homeadditions/.bash_aliases
     run_cmd "ln -s ~/.dotfiles/bash/.bashrc ~/.ddev/homeadditions/.bashrc"
@@ -235,13 +237,13 @@ function setup_zsh() {
 function bundle_zsh_plugins() {
     cmd_describe ⧗ Cloning zsh plugins ... 
     cd ~/.config; 
-    git clone https://github.com/ohmyzsh/ohmyzsh.git "~/.config/oh-my-zsh";
-    git clone "https://github.com/lukechilds/zsh-nvm.git" "~/.config/zsh/plugins/zsh-nvm";
-    git clone "https://github.com/zsh-users/zsh-autosuggestions.git" "~/.config/zsh/plugins/zsh-autosuggestions";
-    git clone "https://github.com/zsh-users/zsh-completions.git" "~/.config/zsh/plugins/zsh-completions";
-    git clone "https://github.com/zsh-users/zsh-syntax-highlighting.git" "~/.config/zsh/plugins/zsh-syntax-highlighting";
-    git clone "https://github.com/zsh-users/zsh-history-substring-search.git" "~/.config/zsh/plugins/zsh-history-substring-search";
-    git clone "https://github.com/MichaelAquilina/zsh-you-should-use.git" "~/.config/zsh/plugins/zsh-you-should-use";
+    git clone https://github.com/ohmyzsh/ohmyzsh.git "oh-my-zsh";
+    git clone "https://github.com/lukechilds/zsh-nvm.git" "zsh-nvm";
+    git clone "https://github.com/zsh-users/zsh-autosuggestions.git" "zsh-autosuggestions";
+    git clone "https://github.com/zsh-users/zsh-completions.git" "zsh-completions";
+    git clone "https://github.com/zsh-users/zsh-syntax-highlighting.git" "zsh-syntax-highlighting";
+    git clone "https://github.com/zsh-users/zsh-history-substring-search.git" "zsh-history-substring-search";
+    git clone "https://github.com/MichaelAquilina/zsh-you-should-use.git" "zsh-you-should-use";
     cd ~/.dotfiles;
     cmd_success "✓ zsh plugins cloned"
 }
@@ -265,6 +267,12 @@ function build_lazy_vim() {
   mv ~/.cache/nvim ~/.cache/nvim.bak;
   git clone https://github.com/LazyVim/starter ~/.config/nvim;
   rm -rf ~/.config/nvim/.git;
+}
+
+function create_working_dirs() {
+    cmd_describe "⧗ Creating some default working dirs..."
+    run_cmd "mkdir Documents Projects Media"
+    cd ~; mkdir Documents Projects Media;
 }
 
 function print_pub_key() {
@@ -299,13 +307,14 @@ while $show_options; do
         write_gitconfig
         backup_bashfiles
         install_curl
-        install_nix
+        install_dependencies
         install_ddev
         install_composer
         stow_files
         symlink_ddev_aliases
         setup_zsh
         bundle_zsh_plugins
+        create_working_dirs
         print_pub_key
         cmd_success "✓ Installation finished."
         show_options=false

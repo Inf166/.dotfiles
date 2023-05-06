@@ -17,6 +17,7 @@ $packages = @(
     "Starship.Starship",
     "Figma.Figma",
     "Microsoft.Powershell",
+    "chrisant996.Clink"
     "DominikReichl.KeePass",
     "qutebrowser.qutebrowser"
 )
@@ -49,23 +50,17 @@ try {
     Remove-Item $extractionPath -Recurse -Force
 }
 
-# Download and install Clink with Starship for cmd
-$clinkInstallerUrl = "https://github.com/chrisant996/clink/releases/download/v1.4.24/clink.1.4.24.688975_setup.exe"
-$clinkInstallerPath = "$env:TEMP\clink-setup.exe"
+# Download and install Starship for cmd
 $starshipLuaPath = "$env:LOCALAPPDATA\clink\starship.lua"
 $starshipInitCmd = (io.popen('starship init cmd'):read("*a")())
 
 try {
-    Invoke-WebRequest -Uri $clinkInstallerUrl -OutFile $clinkInstallerPath
-    Start-Process -FilePath $clinkInstallerPath -ArgumentList "/S" -Wait
-
     if (!(Test-Path $starshipLuaPath)) {
         New-Item -Path $starshipLuaPath -ItemType File -Force
     }
 
     Set-Content -Path $starshipLuaPath -Value $starshipInitCmd
 } catch {
-    Write-Warning "Failed to download and install Clink with Starship for cmd."
+    Write-Warning "Failed to download and install Starship for cmd."
 } finally {
-    Remove-Item $clinkInstallerPath -Force
 }

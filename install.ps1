@@ -1,3 +1,6 @@
+# Upgrade exisiting packages with winget
+winget upgrade --all
+
 # Install packages with winget
 $packages = @(
     "Git.Git",
@@ -9,6 +12,8 @@ $packages = @(
     "DeepL.DeepL",
     "Google.Chrome",
     "Mozilla.Firefox",
+    "Microsoft.Edge",
+    "qutebrowser.qutebrowser",
     "Notepad++.Notepad++",
     "JetBrains.Toolbox",
     "JetBrains.PHPStorm",
@@ -23,8 +28,7 @@ $packages = @(
     "chrisant996.Clink"
     "DEVCOM.JetBrainsMonoNerdFont",
     "DominikReichl.KeePass",
-    "Zoom.Zoom",
-    "qutebrowser.qutebrowser"
+    "Zoom.Zoom"
 )
 
 foreach ($package in $packages) {
@@ -53,10 +57,10 @@ try {
 }
 
 
-# WSL install
+# WSL install from https://aka.ms/wslubuntu2204 manually
 # wsl --list --online
-# wsl --install -d Ubuntu-22.04
 # wsl --set-default-version 2
+# wsl --install -d Ubuntu-22.04
 # wsl --set-default Ubuntu-22.04
 # wsl --set-version Ubuntu-22.04 2
 # sudo apt update && sudo apt full-upgrade

@@ -30,7 +30,7 @@ wsl.exe -u root service docker status > /dev/null || wsl.exe -u root service doc
 zstyle :omz:plugins:keychain agents ssh
 # Add sshkey on startup but wait for use
 # (remove --noask for instant prompt and ask only if id is needed)
-eval $(keychain -q --noask --eval id_ed25519)
+eval $(keychain -q --noask --eval iwmedien)
 
 # DIRCOLORS (MacOS)
 export CLICOLOR=1

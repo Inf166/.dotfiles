@@ -75,10 +75,10 @@ function run_cmd() {
 
 function update_system() {
     cmd_describe "⧗ Updating local system ..."
-    run_cmd "sudo apt update && apt upgrade -y"
-    sudo apt update && sudo apt full-upgrade
-    run_cmd "sudo apt-get update && apt-get upgrade -y"
-    sudo apt-get update && sudo apt-get upgrade -y
+    run_cmd "sudo apt update && sudo apt full-upgrade"
+    sudo apt update && sudo apt full-upgrade;
+    run_cmd "sudo apt-get update && sudo apt-get upgrade -y"
+    sudo apt-get update && sudo apt-get upgrade -y;
     cmd_success "✓ Updated local system"
 }
 
@@ -147,11 +147,13 @@ function install_curl() {
 function install_dependencies() {
     cmd_describe "⧗ Installing dev tools ..."
     sudo apt-get install -y autojump git stow zsh fish;
+    sudo apt install php php-mbstring php-xml php-zip php-curl php-xdebug;
     sudo apt install bat;
     sudo apt install fd-find;
     sudo apt install exa;
     sudo apt install duf;
     sudo apt install dos2unix;
+    sudo apt-get install keychain;
     curl -sS https://starship.rs/install.sh | sh;
     cmd_success "✓ Installed dev tools"
 }
@@ -159,13 +161,14 @@ function install_dependencies() {
 function install_ddev() {
     cmd_describe "⧗ Installing ddev ..."
     run_cmd "sudo apt install curl -y"
+    sudo apt install curl -y;
     run_cmd "curl -fsSL https://apt.fury.io/drud/gpg.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/ddev.gpg > /dev/null"
-    curl -fsSL https://apt.fury.io/drud/gpg.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/ddev.gpg > /dev/null
+    curl -fsSL https://apt.fury.io/drud/gpg.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/ddev.gpg > /dev/null;
     run_cmd "echo "deb [signed-by=/etc/apt/trusted.gpg.d/ddev.gpg] https://apt.fury.io/drud/ * *" | sudo tee /etc/apt/sources.list.d/ddev.list"
-    echo "deb [signed-by=/etc/apt/trusted.gpg.d/ddev.gpg] https://apt.fury.io/drud/ * *" | sudo tee /etc/apt/sources.list.d/ddev.list
+    echo "deb [signed-by=/etc/apt/trusted.gpg.d/ddev.gpg] https://apt.fury.io/drud/ * *" | sudo tee /etc/apt/sources.list.d/ddev.list;
     run_cmd "sudo apt update && sudo apt install -y ddev"
-    sudo apt update && sudo apt install -y ddev
-    ddev
+    sudo apt update && sudo apt install -y ddev;
+    ddev;
     cmd_success "✓ Installed ddev"
 }
 

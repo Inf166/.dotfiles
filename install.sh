@@ -76,9 +76,9 @@ function run_cmd() {
 function update_system() {
     cmd_describe "⧗ Updating local system ..."
     run_cmd "sudo apt update && apt upgrade -y"
-    sudo apt update && apt upgrade -y
+    sudo apt update && sudo apt full-upgrade
     run_cmd "sudo apt-get update && apt-get upgrade -y"
-    sudo apt-get update && apt-get upgrade -y
+    sudo apt-get update && sudo apt-get upgrade -y
     cmd_success "✓ Updated local system"
 }
 
@@ -146,7 +146,10 @@ function install_curl() {
 
 function install_dependencies() {
     cmd_describe "⧗ Installing dev tools ..."
-    sudo apt-get install -y autojump bat direnv git keychain stow zsh
+    sudo apt-get install -y autojump bat git stow zsh fish direnv keychain
+    sudo apt install fd-find
+    sudo apt install exa
+    sudo apt install duf
     curl -sS https://starship.rs/install.sh | sh
     cd ~; mkdir .config; cd .config; git clone https://github.com/ohmyzsh/ohmyzsh.git oh-my-zsh
     cmd_success "✓ Installed dev tools"
@@ -209,10 +212,8 @@ function symlink_ddev_aliases() {
     ln -s ~/.dotfiles/bash/.bash_aliases ~/.ddev/homeadditions/.bash_aliases
     run_cmd "ln -s ~/.dotfiles/bash/.bashrc ~/.ddev/homeadditions/.bashrc"
     ln -s ~/.dotfiles/bash/.bashrc ~/.ddev/homeadditions/.bashrc
-    run_cmd "ln -s ~/.nix-profile/bin/starship ~/.ddev/homeadditions/starship"
-    curl -fsSL https://github.com/starship/starship/releases/latest/download/starship-x86_64-unknown-linux-gnu.tar.gz -o ~/.ddev/homeadditions/starship.tar.gz
-    tar -xzf ~/.ddev/homeadditions/starship.tar.gz -C ~/.ddev/homeadditions/
-    # ln -s ~/.nix-profile/bin/starship ~/.ddev/homeadditions/starship
+    run_cmd  "ln -s /usr/local/bin/starship ~/.ddev/homeadditions/starship"
+    ln -s /usr/local/bin/starship ~/.ddev/homeadditions/starship
     run_cmd "ln -s ~/.dotfiles/starship/.config ~/.ddev/homeadditions/.config"
     ln -s ~/.dotfiles/starship/.config ~/.ddev/homeadditions/.config
 

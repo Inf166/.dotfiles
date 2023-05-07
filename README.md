@@ -8,7 +8,7 @@
 # git config --global core.autocrlf true
 
 ```bash
-git config --global core.autocrlf input
+git config --global core.autocrlf input;
 git clone https://github.com/Inf166/.dotfiles.git;
 cd ~/.dotfiles;
 chmod a+x install.sh;

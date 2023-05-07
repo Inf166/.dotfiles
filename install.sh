@@ -103,8 +103,9 @@ function get_user_info() {
 function generate_ssh_key() {
     cmd_describe "⧗ Creating new ssh key for you ..."
     if [ ! -d ~/.ssh ]; then
-        cmd_warn "SSH directory does not exist. Creating one ..."
+        cmd_describe "SSH directory does not exist. Creating one ..."
         run_cmd "mkdir -p ~/.ssh"
+        mkdir -p ~/.ssh;
     fi
     run_cmd "cp -r /mnt/c/Users/<username>/.ssh/* ~/.ssh/"
     cp -r /mnt/c/Users/${winname}/.ssh/* ~/.ssh/;
@@ -307,15 +308,56 @@ function setup_zsh() {
 
 function bundle_zsh_plugins() {
     cmd_describe ⧗ Cloning zsh plugins ... 
-    cd ~/.config; 
+
+    run_cmd "cd ~/.config"
+    if [ ! -d ~/.config ]; then
+        cmd_describe "config directory does not exist. Creating one ..."
+        run_cmd "mkdir -p ~/.config"
+        mkdir -p ~/.config;
+    fi
+    if cd ~/.config; then
+        cmd_success "Now in config directory."
+    else
+        cmd_error "Failed to change directory to config directory."
+        return 1
+    fi
+    run_cmd "git clone https://github.com/ohmyzsh/ohmyzsh.git"
     git clone https://github.com/ohmyzsh/ohmyzsh.git "oh-my-zsh";
+
+    run_cmd "cd ~/.config/zsh/plugins"
+    if [ ! -d ~/.config/zsh/plugins ]; then
+        cmd_describe "config directory does not exist. Creating one ..."
+        run_cmd "mkdir -p ~/.config/zsh/plugins"
+        mkdir -p ~/.config/zsh/plugins;
+    fi
+    if cd ~/.config/zsh/plugins; then
+        cmd_success "Now in .config/zsh/plugins directory."
+    else
+        cmd_error "Failed to change directory to .config/zsh/plugins directory."
+        return 1
+    fi
+
+    run_cmd "git clone https://github.com/lukechilds/zsh-nvm.git"
     git clone "https://github.com/lukechilds/zsh-nvm.git" "zsh-nvm";
+
+    run_cmd "git clone https://github.com/zsh-users/zsh-autosuggestions.git"
     git clone "https://github.com/zsh-users/zsh-autosuggestions.git" "zsh-autosuggestions";
+
+    run_cmd "git clone https://github.com/zsh-users/zsh-completions.git"
     git clone "https://github.com/zsh-users/zsh-completions.git" "zsh-completions";
+
+    run_cmd "git clone https://github.com/zsh-users/zsh-syntax-highlighting.git"
     git clone "https://github.com/zsh-users/zsh-syntax-highlighting.git" "zsh-syntax-highlighting";
+
+    run_cmd "git clone https://github.com/zsh-users/zsh-history-substring-search.git"
     git clone "https://github.com/zsh-users/zsh-history-substring-search.git" "zsh-history-substring-search";
+
+    run_cmd "git clone https://github.com/MichaelAquilina/zsh-you-should-use.git"
     git clone "https://github.com/MichaelAquilina/zsh-you-should-use.git" "zsh-you-should-use";
+
+    run_cmd "cd ~/.dotfiles;"
     cd ~/.dotfiles;
+
     cmd_success "✓ zsh plugins cloned"
 }
 
@@ -343,7 +385,8 @@ function build_lazy_vim() {
 function create_working_dirs() {
     cmd_describe "⧗ Creating some default working dirs..."
     run_cmd "mkdir Documents Projects Media"
-    cd ~; mkdir Documents Projects Media;
+    cd ~; 
+    mkdir Documents Projects Media;
 }
 
 function print_pub_key() {

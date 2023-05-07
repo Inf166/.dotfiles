@@ -84,9 +84,12 @@ function update_system() {
 
 function get_user_info() {
     cmd_describe "⧗ Getting informations ..."
-    prompt_user What is you Windows User Name?
+    prompt_user What is your Windows User Name?
     read -p "➤ " windowsname
     winname="$windowsname"
+    prompt_user What is your WSL User Name?
+    read -p "➤ " wslname
+    wname="$wslname"
     cmd_describe "⧗ Getting informations ..."
     prompt_user What should the ssh key be named?
     read -p "➤ " sshkeyname
@@ -140,6 +143,19 @@ function write_gitconfig() {
     run_cmd cd ~/.dotfiles
     cd ~/.dotfiles;
     cmd_success "✓ Gitconfig written"
+}
+
+function write_wslconfig() {
+    cmd_describe "⧗ Writing wsl conf ..."
+    run_cmd "sudo touch /etc/wsl.conf"
+    sudo touch /etc/wsl.conf;
+    cd /etc;
+    run_cmd "echo [user] >> wsl.conf;"
+    echo "[user]" >> wsl.conf;
+    run_cmd "echo default=${wname} >> wsl.conf;"
+    echo "default=${wname}" >> wsl.conf;
+    cd ~/.dotfiles;
+    cmd_success "✓ wsl conf written"
 }
 
 function backup_bashfiles() {
@@ -418,6 +434,7 @@ while $show_options; do
         get_user_info
         generate_ssh_key
         write_gitconfig
+        write_wslconfig
         backup_bashfiles
         install_curl
         install_dependencies

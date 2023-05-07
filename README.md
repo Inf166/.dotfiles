@@ -9,6 +9,7 @@
 5. Create as many copies of the Distro as you like, by: 
   - First create a new dir: `mkdir C:\WSLDistros\<YourDistroName>\`
   - Import the exported Distro: `wsl --import <YourDistroName> C:\WSLDistros\<YourDistroName>\ Ubuntu.tar`
+  - To enter the new wsl with the created user in the old distor use: `wsl -d <YourDistroName> -u <TheUnixUserName>`
 
 To entere a wsl instance by default use `wsl --setdefault <Name of the Distro>`
 Use `wsl -l -v` to see which distros are running.

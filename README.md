@@ -8,6 +8,7 @@
 # git config --global core.autocrlf true
 
 ```bash
+sudo ls;
 git config --global core.autocrlf input;
 git clone https://github.com/Inf166/.dotfiles.git;
 cd ~/.dotfiles;

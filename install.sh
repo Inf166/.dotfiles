@@ -432,6 +432,7 @@ while $show_options; do
         create_working_dirs
         print_pub_key
         cmd_success "✓ Installation finished."
+        run_cmd "You may have to add the copied ssh keys manually by running: ssh-add ~/.ssh/yourkeyname"
         show_options=false
         break
         ;;

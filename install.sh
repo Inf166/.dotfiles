@@ -147,14 +147,21 @@ function write_gitconfig() {
 
 function write_wslconfig() {
     cmd_describe "⧗ Writing wsl conf ..."
+    # Create a backup of existing wsl.conf file, if any
+    sudo cp /etc/wsl.conf /etc/wsl.conf.bak
+
     run_cmd "sudo touch /etc/wsl.conf"
     sudo touch /etc/wsl.conf;
-    cd /etc;
-    run_cmd "echo [user] >> wsl.conf;"
-    echo "[user]" >> wsl.conf;
-    run_cmd "echo default=${wname} >> wsl.conf;"
-    echo "default=${wname}" >> wsl.conf;
-    cd ~/.dotfiles;
+
+    # Write to /etc/wsl.conf with sudo
+    sudo sh -c "echo '[user]' >> /etc/wsl.conf"
+    sudo sh -c "echo 'default=${wname}' >> /etc/wsl.conf"
+
+    # Change file permissions to allow non-root users to read the file
+    sudo chmod 644 /etc/wsl.conf
+
+    # Change directory back to the dotfiles directory
+    cd ~/.dotfiles
     cmd_success "✓ wsl conf written"
 }
 
@@ -456,6 +463,7 @@ while $show_options; do
         fix_git_for_root
         print_pub_key
         cmd_success "✓ Installation finished."
+        run_cmd "Please set the git executable in phpstorm to \\\wsl$\\Work\\home\\${wname}\\git"
         run_cmd "Please exit wsl and restart it using wsl --shutdown"
         show_options=false
         break

@@ -23,12 +23,22 @@ setopt SHARE_HISTORY
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git keychain autojump git git-extras node npm ssh-agent web-search zsh-nvm zsh-syntax-highlighting zsh-autosuggestions zsh-completions zsh-history-substring-search zsh-you-should-use)
+plugins=(
+    autojump 
+    git 
+    git 
+    git-extras 
+    keychain 
+    node 
+    npm 
+    ssh-agent 
+    web-search 
+    zsh-autosuggestions 
+    zsh-completions 
+    zsh-history-substring-search 
+    zsh-nvm 
+    zsh-syntax-highlighting 
+    zsh-you-should-use
+)
 
 source $ZSH/oh-my-zsh.sh
-# Define config path of starship
-export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
-export STARSHIP_CACHE=$HOME/.config/starship/cache
-
-# Init Starship
-eval $(starship init zsh)

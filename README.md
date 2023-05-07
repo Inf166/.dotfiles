@@ -5,6 +5,14 @@
 3. Run `./install.sh`
 4. Open up new window to initiate `zsh` shell
 
+
+```bash
+git clone https://github.com/Inf166/.dotfiles.git;
+cd ~/.dotfiles;
+chmod a+x install.sh;
+./install.sh;
+```
+
 ## Pimp your Terminal
 
 - Install Nerd Fonts [Fira Mono](https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/FiraMono.zip)

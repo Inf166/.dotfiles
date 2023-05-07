@@ -111,6 +111,9 @@ fi
 /usr/bin/keychain $HOME/.ssh/iwmedien
 source $HOME/.keychain/$HOSTNAME-sh
 
+# autojump
+. /usr/share/autojump/autojump.sh
+
 # Define config path of starship
 export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
 export STARSHIP_CACHE=$HOME/.config/starship/cache

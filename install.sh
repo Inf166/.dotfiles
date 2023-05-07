@@ -266,6 +266,7 @@ function install_composer() {
 
 function stow_files() {
     cmd_describe "⧗ Stowing dotfiles ..."
+    dos2unix ~/.dotfiles/bash/.inputrc;
     run_cmd stow bash
     stow bash;
     run_cmd stow git
@@ -298,10 +299,6 @@ function setup_zsh() {
     cmd_describe "⧗ Adding zsh as a login shell ..."
     run_cmd "command -v zsh | sudo tee -a /etc/shells"
     command -v zsh | sudo tee -a /etc/shells;
-
-    cmd_describe ⧗ Using zsh as default shell ...
-    run_cmd "chsh -s $(which zsh)"
-    chsh -s $(which zsh);
 
     cmd_success "✓ zsh is set up"
 }

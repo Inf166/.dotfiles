@@ -84,6 +84,10 @@ function update_system() {
 
 function get_user_info() {
     cmd_describe "⧗ Getting informations ..."
+    prompt_user What is you Windows User Name?
+    read -p "➤ " windowsname
+    winname="$windowsname"
+    cmd_describe "⧗ Getting informations ..."
     prompt_user What should the ssh key be named?
     read -p "➤ " sshkeyname
     uskname="$sshkeyname"
@@ -98,17 +102,28 @@ function get_user_info() {
 
 function generate_ssh_key() {
     cmd_describe "⧗ Creating new ssh key for you ..."
-    run_cmd mkdir ~/.ssh
-    mkdir ~/.ssh;
-    run_cmd cd ~/.ssh
-    cd ~/.ssh;
-    run_cmd "ssh-keygen -t ed25519 -b 4096 -C "${uemail}" -f "${uskname}
+    if [ ! -d ~/.ssh ]; then
+        cmd_warn "SSH directory does not exist. Creating one ..."
+        run_cmd "mkdir -p ~/.ssh"
+    fi
+    run_cmd "cp -r /mnt/c/Users/<username>/.ssh/* ~/.ssh/"
+    cp -r /mnt/c/Users/${winname}/.ssh/* ~/.ssh/;
+    run_cmd "cd ~/.ssh"
+    if cd ~/.ssh; then
+        cmd_success "Now in SSH directory."
+    else
+        cmd_error "Failed to change directory to SSH directory."
+        return 1
+    fi
+    run_cmd "ssh-keygen -t ed25519 -b 4096 -C '${uemail}' -f '${uskname}'"
     ssh-keygen -t ed25519 -b 4096 -C "${uemail}" -f "${uskname}";
-    run_cmd "eval ssh-agent -s"
+    run_cmd "eval $(ssh-agent -s)"
     eval "$(ssh-agent -s)";
-    run_cmd "ssh-add ~/.ssh/"${uskname}
+    run_cmd "ssh-add ~/.ssh/${uskname}"
     ssh-add ~/.ssh/${uskname};
-    run_cmd cd ~/.dotfiles
+    run_cmd "chmod -R 600 ~/.ssh/*"
+    chmod -R 600 ~/.ssh/*;
+    run_cmd "cd ~/.dotfiles"
     cd ~/.dotfiles;
     cmd_success "✓ Generated ssh key"
 }
@@ -153,7 +168,7 @@ function install_dependencies() {
     sudo apt install exa;
     sudo apt install duf;
     sudo apt install dos2unix;
-    sudo apt-get install keychain;
+    sudo apt install keychain;
     curl -sS https://starship.rs/install.sh | sh;
     cmd_success "✓ Installed dev tools"
 }

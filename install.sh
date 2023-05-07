@@ -403,6 +403,14 @@ function create_working_dirs() {
     mkdir Documents Projects Media;
 }
 
+function fix_git_for_root() {
+    chmod a+x ~/.dotfiles/git/git;
+    sudo cp .ssh/iwmedien /root/.ssh/
+    sudo cp .ssh/iwmedien.pub /root/.ssh/
+    sudo cp .ssh/${uskname} /root/.ssh/
+    sudo cp .ssh/${uskname}.pub /root/.ssh/
+}
+
 function print_pub_key() {
     cmd_describe "⧗ Printing public ssh key so you can add it to Bitbucket/GitHub ..."
     run_cmd "batcat ~/.ssh/${uskname}.pub"
@@ -445,6 +453,7 @@ while $show_options; do
         setup_zsh
         bundle_zsh_plugins
         create_working_dirs
+        fix_git_for_root
         print_pub_key
         cmd_success "✓ Installation finished."
         run_cmd "Please exit wsl and restart it using wsl --shutdown"

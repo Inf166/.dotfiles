@@ -2,6 +2,8 @@
 	excludesfile = ~/.gitignore_global
     editor = nvim
 	autocrlf = input
+[safe]
+	directory = *
 [pull]
 	ff = only
 [init]

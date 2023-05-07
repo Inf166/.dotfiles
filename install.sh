@@ -270,6 +270,7 @@ function stow_files() {
     run_cmd stow bash
     stow bash;
     run_cmd stow git
+    rm ~/.gitconfig;
     stow git;
     run_cmd stow starship
     stow starship;
@@ -429,7 +430,7 @@ while $show_options; do
         create_working_dirs
         print_pub_key
         cmd_success "✓ Installation finished."
-        run_cmd "You may have to add the copied ssh keys manually by running: ssh-add ~/.ssh/yourkeyname"
+        run_cmd "Please exit wsl and restart it using wsl --shutdown"
         show_options=false
         break
         ;;

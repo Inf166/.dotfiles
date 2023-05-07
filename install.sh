@@ -198,17 +198,18 @@ function install_dependencies() {
     sudo apt-get install fd-find -y;
 
     run_cmd "Enable systemd"
-    git clone https://github.com/DamionGans/ubuntu-wsl2-systemd-script.git
-    cd ubuntu-wsl2-systemd-script/
-    bash ubuntu-wsl2-systemd-script.sh
+    git clone https://github.com/DamionGans/ubuntu-wsl2-systemd-script.git;
+    cd ubuntu-wsl2-systemd-script/;
+    bash ubuntu-wsl2-systemd-script.sh;
+    cd ~/.dotfiles;
 
     run_cmd "sudo apt install snapd"
     sudo apt install snapd -y;
 
     run_cmd "Enable snap service"
-    sudo systemctl unmask snapd.service
-    sudo systemctl enable snapd.service
-    sudo systemctl start snapd.service
+    sudo systemctl unmask snapd.service;
+    sudo systemctl enable snapd.service;
+    sudo systemctl start snapd.service;
 
     run_cmd "sudo snap install lsd"
     sudo snap install lsd;

@@ -5,8 +5,10 @@
 3. Run `./install.sh`
 4. Open up new window to initiate `zsh` shell
 
+# git config --global core.autocrlf true
 
 ```bash
+git config --global core.autocrlf input
 git clone https://github.com/Inf166/.dotfiles.git;
 cd ~/.dotfiles;
 chmod a+x install.sh;

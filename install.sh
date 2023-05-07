@@ -250,6 +250,19 @@ function install_dependencies() {
 }
 
 function install_ddev() {
+    cmd_describe "⧗ Installing docker ..."
+    sudo apt install --no-install-recommends apt-transport-https ca-certificates curl gnupg2 -y;
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -;
+    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu `lsb_release -cs` test";
+    sudo apt update;
+    sudo apt install docker-ce docker-ce-cli containerd.io -y;
+    sudo usermod -aG docker $USER;
+    sudo apt-get update;
+    sudo apt-get install docker-compose-plugin -y;
+    docker --version;
+    docker compose version;
+    cmd_success "✓ Installed docker"
+
     cmd_describe "⧗ Installing ddev ..."
     run_cmd "curl -fsSL https://apt.fury.io/drud/gpg.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/ddev.gpg > /dev/null"
     curl -fsSL https://apt.fury.io/drud/gpg.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/ddev.gpg > /dev/null;
@@ -259,6 +272,7 @@ function install_ddev() {
     sudo apt update;
     sudo apt install -y ddev;
     ddev;
+    mkcert -install;
     cmd_success "✓ Installed ddev"
 }
 

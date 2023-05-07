@@ -15,3 +15,4 @@ To entere a wsl instance by default use `wsl --setdefault <Name of the Distro>`
 Use `wsl -l -v` to see which distros are running.
 Use `wsl -l -o` to see which distros are avaible for download and install.
 Use `wsl --shutdown` to shutdown all instances.
+Use `wsl --unregister <YourDistroName>` to remove a Distro

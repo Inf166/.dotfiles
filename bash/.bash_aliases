@@ -8,7 +8,7 @@ alias src='source ~/.zshrc'
 alias update-antibody='antibody bundle < $HOME/.zsh_plugins.txt > $HOME/.zsh_plugins.sh'
 
 # Move: cat -> bat
-alias cat='bat'
+alias cat='batcat'
 
 # System
 alias sagi='sudo apt-get install'

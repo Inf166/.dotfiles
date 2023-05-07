@@ -161,39 +161,83 @@ function install_curl() {
 
 function install_dependencies() {
     cmd_describe "⧗ Installing dev tools ..."
-    sudo apt-get install -y autojump git stow zsh fish;
-    sudo apt install php php-mbstring php-xml php-zip php-curl php-xdebug;
-    sudo apt install bat;
-    sudo apt install fd-find;
-    sudo apt install exa;
-    sudo apt install duf;
-    sudo apt install dos2unix;
-    sudo apt install keychain;
+
+    run_cmd "Installing curl"
+    sudo apt-get install curl -y;
+    run_cmd "Installing git"
+    sudo apt-get install git -y;
+
+    run_cmd "Installing autojump"
+    sudo apt-get install autojump -y;
+    run_cmd "Installing stow"
+    sudo apt-get install stow -y;
+    run_cmd "Installing zsh"
+    sudo apt-get install zsh -y;
+    run_cmd "Installing fish"
+    sudo apt-get install fish -y;
+
+    run_cmd "Installing php"
+    sudo apt-get install php -y;
+    run_cmd "Installing php-mbstring"
+    sudo apt-get install php-mbstring -y;
+    run_cmd "Installing php-xml"
+    sudo apt-get install php-xml -y;
+    run_cmd "Installing php-zip"
+    sudo apt-get install php-zip -y;
+    run_cmd "Installing php-curl"
+    sudo apt-get install php-curl -y;
+    run_cmd "Installing php-xdebug"
+    sudo apt-get install php-xdebug -y;
+    run_cmd "sudo apt install php-cli unzip"
+    sudo apt-get install php-cli unzip -y;
+    
+    run_cmd "sudo apt-get install bat"
+    sudo apt-get install bat -y;
+    
+    run_cmd "sudo apt-get install fd-find"
+    sudo apt-get install fd-find -y;
+
+    run_cmd "Enable systemd"
+    git clone https://github.com/DamionGans/ubuntu-wsl2-systemd-script.git
+    cd ubuntu-wsl2-systemd-script/
+    bash ubuntu-wsl2-systemd-script.sh
+
+    run_cmd "sudo apt install snapd"
+    sudo apt install snapd -y;
+
+    run_cmd "Enable snap service"
+    sudo systemctl unmask snapd.service
+    sudo systemctl enable snapd.service
+    sudo systemctl start snapd.service
+
+    run_cmd "sudo snap install lsd"
+    sudo snap install lsd;
+    
+    run_cmd "sudo apt-get install dos2unix"
+    sudo apt-get install dos2unix -y;
+
+    run_cmd "sudo apt-get install keychain"
+    sudo apt-get install keychain -y;
+
     curl -sS https://starship.rs/install.sh | sh;
+    
     cmd_success "✓ Installed dev tools"
 }
 
 function install_ddev() {
     cmd_describe "⧗ Installing ddev ..."
-    run_cmd "sudo apt install curl -y"
-    sudo apt install curl -y;
     run_cmd "curl -fsSL https://apt.fury.io/drud/gpg.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/ddev.gpg > /dev/null"
     curl -fsSL https://apt.fury.io/drud/gpg.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/ddev.gpg > /dev/null;
     run_cmd "echo "deb [signed-by=/etc/apt/trusted.gpg.d/ddev.gpg] https://apt.fury.io/drud/ * *" | sudo tee /etc/apt/sources.list.d/ddev.list"
     echo "deb [signed-by=/etc/apt/trusted.gpg.d/ddev.gpg] https://apt.fury.io/drud/ * *" | sudo tee /etc/apt/sources.list.d/ddev.list;
     run_cmd "sudo apt update && sudo apt install -y ddev"
-    sudo apt update && sudo apt install -y ddev;
+    sudo apt update;
+    sudo apt install -y ddev;
     ddev;
     cmd_success "✓ Installed ddev"
 }
 
 function install_composer() {
-    cmd_describe "⧗ Installing php-cli ..."
-    
-    run_cmd "sudo apt install php-cli unzip"
-    sudo apt install php-cli unzip;
-
-    cmd_success "✓ Installed php-cli"
     cmd_describe "⧗ Installing composer ..."
 
     run_cmd "curl -sS https://getcomposer.org/installer -o ~/tmp/composer-setup.php"
@@ -209,6 +253,13 @@ function install_composer() {
     sudo php ~/tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer;
 
     cmd_success "✓ Installed composer"
+    cmd_describe "⧗ Cleaning up"
+
+    run_cmd "sudo apt autoremove -y"
+    sudo apt autoremove -y;
+    sudo apt-get autoremove -y;
+
+    cmd_success "✓ Cleaned up"
 }
 
 function stow_files() {
@@ -296,8 +347,9 @@ function create_working_dirs() {
 
 function print_pub_key() {
     cmd_describe "⧗ Printing public ssh key so you can add it to Bitbucket/GitHub ..."
-    run_cmd "bat ~/.ssh/${uskname}.pub"
-    bat ~/.ssh/${uskname}.pub;
+    run_cmd "batcat ~/.ssh/${uskname}.pub"
+    batcat ~/.ssh/${uskname}.pub;
+    cd ~;
 }
 
 # Starting the Script

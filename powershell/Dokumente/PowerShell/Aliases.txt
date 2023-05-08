@@ -1,0 +1,65 @@
+New-Alias -Name gs -Value git status
+New-Alias -Name gd -Value git diff
+New-Alias -Name glog -Value git log --graph --pretty=oneline --abbrev-commit
+New-Alias -Name gaa -Value git add .
+New-Alias -Name push -Value git push origin
+
+New-Alias -Name ds -Value docker ps
+
+New-Alias -Name ddevup -Value ddev start; ddev auth ssh;
+New-Alias -Name ddevdown -Value ddev stop
+New-Alias -Name poweroff -Value ddev poweroff
+
+New-Alias -Name ddevssh -Value ddev ssh
+New-Alias -Name snapshot -Value ddev snapshot --name $(date +%Y-%m-%d_%H-%M)-${PWD##*/}
+New-Alias -Name dremove -Value ddev delete --omit-snapshot
+
+New-Alias -Name describe -Value ddev describe
+New-Alias -Name launch -Value ddev launch
+New-Alias -Name mail -Value ddev launch -m
+New-Alias -Name db -Value ddev launch -p
+New-Alias -Name fe -Value ddev launch
+New-Alias -Name be -Value ddev launch /typo3
+New-Alias -Name itool -Value ddev launch /typo3/install.php
+
+New-Alias -Name cache -Value ddev typo3cms cache:flush;
+New-Alias -Name ccache -Value ddev composer du;
+New-Alias -Name fullcache -Value cache; ccache;
+New-Alias -Name dbupdate -Value ddev typo3cms database:updateschema;
+New-Alias -Name langupdate -Value ddev typo3cms language:update
+New-Alias -Name genpackages -Value ddev typo3cms install:generatepackagestates
+New-Alias -Name fixfolder -Value ddev typo3cms install:fixfolderstructure;
+New-Alias -Name cadmin -Value ddev typo3cms backend:createadmin
+New-Alias -Name t3uwp -Value ddev typo3cms upgrade:prepare
+New-Alias -Name t3uwl -Value ddev typo3cms upgrade:list
+New-Alias -Name t3uw -Value ddev typo3cms upgrade:run
+
+New-Alias -Name npmi -Value ddev . npm i --no-audit --no-fund
+New-Alias -Name npmb -Value ddev . npm run target; cache;
+New-Alias -Name npmw -Value ddev . npm run target:dev
+New-Alias -Name npmlc -Value ddev npm run lint:check
+New-Alias -Name npmlf -Value ddev npm run lint:fix
+
+New-Alias -Name fucknpm -Value rm -rf node_modules; rm package-lock.json
+
+New-Alias -Name sbstart -Value ddev . storybook start
+New-Alias -Name sbbuild -Value ddev . storybook build
+New-Alias -Name sbinit -Value ddev . npx -p @storybook/cli sb init
+
+New-Alias -Name gruntw -Value ddev . grunt watch
+
+New-Alias -Name compidry -Value ddev composer install --dry-run
+New-Alias -Name compi -Value ddev composer install
+New-Alias -Name compind -Value ddev composer install --no-dev
+New-Alias -Name compu -Value ddev composer update
+New-Alias -Name compuwa -Value ddev composer update --with-all-dependencies
+New-Alias -Name compreq -Value ddev composer req
+New-Alias -Name compreqd -Value ddev composer require-dev
+New-Alias -Name complint -Value ddev composer lint && ddev composer phpstan;
+
+New-Alias -Name fuckcomposer -Value ddev composer clear-cache; rm -rf vendor; rm composer.lock
+
+New-Alias -Name boot -Value ddevup; compu; dbupdate; be; npmi; npmb; fe;
+New-Alias -Name build-d -Value ddev . bin/md2pdf build --config documentation.yaml
+New-Alias -Name build-g -Value ddev . bin/md2pdf build --config editor-guide.yaml;
+New-Alias -Name lintall -Value npmlc; npmlf; complint;

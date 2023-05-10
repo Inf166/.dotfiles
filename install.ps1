@@ -1,6 +1,5 @@
 # Upgrade exisiting packages with winget
 winget upgrade --all
-
 # Install packages with winget
 $packages = @(
     "Git.Git",
@@ -21,6 +20,7 @@ $packages = @(
     "JetBrains.WebStorm",
     "JetBrains.IntelliJIDEA.Ultimate",
     "Microsoft.VisualStudioCode",
+    "Canonical.Ubuntu.2204",
     "Spotify.Spotify",
     "Figma.Figma",
     "Microsoft.WindowsTerminal",

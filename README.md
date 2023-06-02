@@ -1,6 +1,6 @@
 # .dotfiles
 
-1. Clone this repository `git clone https://github.com/Inf166/.dotfiles.git`
+1. Clone this repository `git clone https://github.com/mai-space/.dotfiles.git`
 2. Run `chmod a+x install.sh`
 3. Run `./install.sh`
 4. Open up new window to initiate `zsh` shell
@@ -10,7 +10,7 @@
 ```bash
 sudo ls;
 git config --global core.autocrlf input;
-git clone https://github.com/Inf166/.dotfiles.git;
+git clone https://github.com/mai-space/.dotfiles.git;
 cd ~/.dotfiles;
 chmod a+x install.sh;
 ./install.sh;

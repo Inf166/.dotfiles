@@ -16,6 +16,10 @@ alias sagu='sudo apt-get update && sudo apt-get upgrade'
 alias sai='sudo apt install'
 alias sau='sudo apt update && sudo apt upgrade'
 
+# Nice Commands for easier work
+alias newsletter='mjml index.mjml -o index.html'
+alias add-pre-commit="cp ~/.git/hooks/pre-commit .git/hooks/pre-commit; chmod +x .git/hooks/pre-commit;"
+
 # Directories
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -49,6 +53,47 @@ alias dphpversion='echo "$(ddev . php --version | head -n 1 | awk '\''{print "ph
 alias dcomposerversion='echo "$(ddev . composer --version | grep version | awk '\''{print "composer version " \$3}'\'')"'
 
 alias ddevstats="dnpmversion; dnodeversion; dphpversion; dcomposerversion;"
+
+# Video compression
+compress_video() {
+    if [ -z "$1" ]; then
+        echo "Usage: compress_video <filename>"
+        return 1
+    fi
+
+    input_filename="$1"
+    output_filename="${input_filename%.*}_compressed.mp4"
+
+    ffmpeg -i "${input_filename}" -c:v libx264 -tune film -profile:v main -crf 23 -c:a libfdk_aac -b:a 128k -ac 2 "${output_filename}"
+}
+
+compress_image() {
+    # Überprüfe, ob eine Datei als Argument übergeben wurde
+    if [ -z "$1" ]; then
+        echo "Usage: compress_image <filename>"
+        return 1
+    fi
+    INPUT_FILE="$1"
+    OUTPUT_FILE="${INPUT_FILE%.png}_optimized.png"
+
+    # Verlustbehaftete Komprimierung mit pngquant
+    # Benutze einen höheren Qualitätsbereich und den --speed Parameter für höhere Qualität
+    # Reduziere die Farben auf 256
+    pngquant --quality=65-80 --speed 1 --skip-if-larger --strip --output "$OUTPUT_FILE" "$INPUT_FILE"
+
+    # Verwendung von optipng für verlustfreie Optimierung
+    optipng -o7 -strip all "$OUTPUT_FILE"
+
+    # Weitere Optimierung und Entfernen unnötiger Daten mit pngcrush
+    pngcrush -rem alla -reduce -brute "$OUTPUT_FILE" "$OUTPUT_FILE"
+
+    # Rename the output file to the input file
+    mv "$OUTPUT_FILE" "$INPUT_FILE"
+
+    echo "Optimization complete. Optimized file saved as $INPUT_FILE"
+}
+
+alias compress-images='find -name '*.png' -print0 | compress_image'
 
 # Interactive Commands
 alias mv='mv -i'
